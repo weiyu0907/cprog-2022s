@@ -1,6 +1,6 @@
 #! /bin/bash
 
-git pull
-git add .
-git commit -m jyang
-git push
+git.exe pull
+git.exe add .
+git.exe commit -m jyang
+git.exe push

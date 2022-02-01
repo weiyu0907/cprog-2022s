@@ -1,0 +1,13 @@
+#! /usr/bin/bash
+
+if [ $# -eq 0 ]
+then
+   cmd="check50 jy3736/py-2021fall-a/main/`basename "$PWD"` --local"
+else
+   cmd="echo check50 jy3736/py-2021fall-a/main/$1 --local"
+fi
+
+echo $cmd
+
+$cmd
+

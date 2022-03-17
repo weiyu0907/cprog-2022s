@@ -1,0 +1,691 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>C/C++ IDE 實務操作 (電腦教室環境)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style>
+
+<link rel="stylesheet" href="dark-theme.css">
+
+</head><body><article id="efac351e-a987-4a0e-a9df-cf4f698e143b" class="page sans"><header><img class="page-cover-image" src="C%20C++%20IDE%20%20ca7ba/7.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="C%20C++%20IDE%20%20ca7ba/yang-tr-wb.png"/></div><h1 class="page-title">C/C++ IDE 實務操作 (電腦教室環境)</h1><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Notes</th><td><span class="selected-value select-value-color-green">done</span></td></tr></tbody></table></header><div class="page-body"><h2 id="d17c55b3-93d3-48c0-8dee-4d5497d6cadd" class="block-color-purple_background">課程設計</h2><h2 id="c8fbce32-369e-4136-8f4e-40df9bf03810" class="block-color-blue_background">電腦教室安裝的 C/C+++ 開發工具</h2><figure id="4151bc61-e320-4e87-8aa9-b3b514c7c632"><a href="https://git-scm.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Git</div><div class="bookmark-description">Git is easy to learn and has a tiny footprint with lightning fast performance. It outclasses SCM tools like Subversion, CVS, Perforce, and ClearCase with features like cheap local branching, convenient staging areas, and multiple workflows.</div></div><div class="bookmark-href"><img src="https://git-scm.com/favicon.ico" class="icon bookmark-icon"/>https://git-scm.com/</div></div><img src="https://git-scm.com/images/branching-illustration@2x.png" class="bookmark-image"/></a></figure><figure id="ed17f4c2-68ea-467a-be23-bb9a96c7ae46"><a href="https://code.visualstudio.com/docs/languages/cpp" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ programming with Visual Studio Code</div><div class="bookmark-description">C/C++ support for Visual Studio Code is provided by a Microsoft C/C++ extension to enable cross-platform C and C++ development on Windows, Linux, and macOS. Open VS Code. Select the Extensions view icon on the Activity bar or use the keyboard shortcut (⇧⌘X (Windows, Linux Ctrl+Shift+X)). Search for &#x27;C++&#x27;. Select Install.</div></div><div class="bookmark-href"><img src="https://code.visualstudio.com/favicon.ico" class="icon bookmark-icon"/>https://code.visualstudio.com/docs/languages/cpp</div></div><img src="https://code.visualstudio.com/assets/docs/languages/cpp/languages_cpp.png" class="bookmark-image"/></a></figure><figure id="7b8ec7b6-b3ad-422b-ba7c-031d8d30ead1"><a href="https://jmeubank.github.io/tdm-gcc/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">tdm-gcc</div><div class="bookmark-description">TDM-GCC 10.3.0 is now available, along with GDB 10.2, binutils 2.36.1, and new versions of the MinGW.org and MinGW-w64 runtime distributions. Thanks for your patience! Keep reading for download links and change notes. I&#x27;m proud to present a new series of TDM-GCC binaries based around GCC 9.</div></div><div class="bookmark-href"><img src="https://jmeubank.github.io/tdm-gcc/favicon.png" class="icon bookmark-icon"/>https://jmeubank.github.io/tdm-gcc/</div></div><img src="https://jmeubank.github.io/tdm-gcc/img/leonids-logo.png" class="bookmark-image"/></a></figure><h2 id="375179bd-d272-46f6-89f5-ad4083b4e5b4" class="block-color-blue_background">使用 <code>git</code> 下載複製課堂練習及作業</h2><p id="0fba400f-7734-4a6b-90ba-ae2ac36e4458" class="">
+</p><pre id="eca0804e-067f-4aef-8f0c-93fb2f380d54" class="code"><code># 複製「整個」課堂練習及作業檔案夾到本地端電腦
+git clone http://github.com/jy3736/cprog-2022s.git
+
+# 同步更新已 &quot;git clone&quot; 的本地端檔案夾
+git pull</code></pre><h3 id="bd52c36c-c019-44b3-9524-7dae388af53d" class="block-color-orange">在終端機裡使用 git 命令，電腦教室裡有兩種選項：</h3><div id="feb81ed5-d275-421a-9c30-6159ea611b89" class="column-list"><div id="f417eccd-ff63-4dd1-94de-60b6383502e9" style="width:50%" class="column"><h3 id="39562502-3322-429e-a8f6-7ad5172e3ac0" class="block-color-yellow">選項一：使用 Windows 終端機</h3><ul id="ec243eee-1673-4eda-bc6b-9efca165312a" class="bulleted-list"><li style="list-style-type:disc">打開 Windows 終端機 <code>cmd</code> </li></ul><ul id="10a23b1c-1567-4a1c-892f-76a948f81df9" class="bulleted-list"><li style="list-style-type:disc">選擇工作目錄 <code>cd</code> </li></ul><ul id="83d3a4ea-0fcd-45f1-a82c-46f47dd6a915" class="bulleted-list"><li style="list-style-type:disc">下載整個課堂檔案夾 <code>git clone</code> </li></ul><ul id="ebb04724-bc1e-49bf-8442-1dffd8467185" class="bulleted-list"><li style="list-style-type:disc">同步更新課堂檔案夾 <code>git pull</code> </li></ul></div><div id="76f3c937-ac03-4e2a-b779-66ea76fc6f0a" style="width:50%" class="column"><figure id="ca7ba854-013c-4baa-abca-83fa2d6aa1e2" class="image"><a href="C%20C++%20IDE%20%20ca7ba/Untitled.png"><img style="width:829px" src="C%20C++%20IDE%20%20ca7ba/Untitled.png"/></a></figure></div></div><p id="d45a1d96-0f20-4346-be72-5438ec406db0" class="">
+</p><div id="ec5b00b1-e257-4607-bad7-a0598e88013c" class="column-list"><div id="9927855b-dde7-48ab-a338-11e897b44dff" style="width:50.000000000000014%" class="column"><h3 id="79b653bc-d639-4669-8139-e6951d655644" class="block-color-yellow">選項二：使用 VSCode 終端機</h3><ul id="9e773ee6-4b8d-49de-8062-c533a6cf9feb" class="bulleted-list"><li style="list-style-type:disc">打開 VSCode </li></ul><ul id="13fdf575-f0eb-416d-b6ae-0aca13e6d83b" class="bulleted-list"><li style="list-style-type:disc">選擇工作目錄<code>File → Open Folder...</code></li></ul><ul id="43d47869-5ce1-4fa3-b8c1-6c16c7dcb947" class="bulleted-list"><li style="list-style-type:disc">打開終端機 <code>Terminal -&gt; New Terminal</code></li></ul><ul id="4903fd33-9615-4762-a537-f8696b79038c" class="bulleted-list"><li style="list-style-type:disc">下載整個課堂檔案夾 <code>git clone</code> </li></ul><ul id="a5a346e7-77c7-4a54-a821-ec1c459abf61" class="bulleted-list"><li style="list-style-type:disc">同步更新課堂檔案夾 <code>git pull</code> </li></ul></div><div id="90eb10d3-8bcb-494d-a58d-ed61b3ac3c85" style="width:50%" class="column"><figure id="6c0a1a64-61f6-453a-8f46-4c0d2a09c152" class="image"><a href="C%20C++%20IDE%20%20ca7ba/Untitled%201.png"><img style="width:1478px" src="C%20C++%20IDE%20%20ca7ba/Untitled%201.png"/></a></figure></div></div><h2 id="054a7f32-71ae-4f31-a116-844594a3414e" class="block-color-blue_background">使用 VSCode + TDM-GCC 編輯及編譯程式</h2><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="fd439512-aba1-440f-8e70-dd7273593a30"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">編譯含中文的 C/C++ 程式<p id="4033e744-4b08-4651-8def-c9040e4cda5e" class="">編譯 C 原始程式：<code>gcc main.c -o hw01 -fexec-charset=BIG5</code></p><p id="0ddf96e2-e8ea-4626-8da1-f9b7d1e91e9b" class="">編譯 C++ 原始程式：<code>g++ main.cpp -o hw01 -fexec-charset=BIG5</code></p></div></figure><figure id="15e93d4d-bfe7-4a97-932a-f578e49e1439" class="image"><a href="C%20C++%20IDE%20%20ca7ba/Untitled%202.png"><img style="width:2054px" src="C%20C++%20IDE%20%20ca7ba/Untitled%202.png"/></a></figure><div id="172ac9b3-1f33-428e-9b85-e7c976828318" class="column-list"><div id="0146cb08-6de7-4b89-8f50-85ec72e08a30" style="width:37.5%" class="column"><ul id="a077bcb3-aa29-4758-83b1-517b9ddb70e6" class="bulleted-list"><li style="list-style-type:disc">打開 VSCode </li></ul><ul id="64aea1af-d0c6-402c-9e69-f699cee7efb9" class="bulleted-list"><li style="list-style-type:disc">選擇工作目錄<code>File → Open Folder...</code></li></ul><ul id="9ff855e0-4487-426c-863a-cd2df2a6f5d5" class="bulleted-list"><li style="list-style-type:disc">編輯程式 <code>lab01.cpp</code></li></ul><ul id="bab8a4e4-2444-4436-b3fe-55dda2be92cc" class="bulleted-list"><li style="list-style-type:disc">打開終端機 <code>Terminal -&gt; New Terminal</code></li></ul><ul id="21b1a289-b58a-401b-a663-ffcadd0d3600" class="bulleted-list"><li style="list-style-type:disc">編譯程式 <code>g++ -o lab01 lab01.cpp</code></li></ul><ul id="d4da6906-6761-477b-ad8d-741405694d65" class="bulleted-list"><li style="list-style-type:disc">執行程式 <code>.\lab01.exe</code></li></ul><p id="0ac49821-f6e9-4fc4-86fe-9214c4ab2022" class="">
+</p></div><div id="7ee6c0a1-d9ae-41db-a11f-d8d5d6c32e02" style="width:62.5%" class="column"><pre id="0f44e0a7-3909-4053-83a1-41a2fe613d86" class="code"><code>// File name :  lab01.cpp
+
+#include &lt;iostream&gt;
+
+using namespace std;
+
+int main()
+{
+    int sum = 0;
+    int n;
+    cout &lt;&lt; &quot;Enter an integer n : &quot;;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++)
+    {
+        sum += i;
+        cout &lt;&lt; i &lt;&lt; ((i &lt; n) ? &quot; + &quot; : &quot; = &quot;);
+    }
+    cout &lt;&lt; sum &lt;&lt; endl;
+
+    return 0;
+}</code></pre></div></div><p id="417dd7a9-7033-4c2d-9aaf-2e7cbb7ca804" class="">
+</p><p id="746fa8dd-19f9-47bf-9b10-b8454f3398cd" class="">
+</p><figure id="f5c9fbeb-39de-4933-b0f7-a446911bff3e" class="image"><a href="C%20C++%20IDE%20%20ca7ba/%E5%9C%96%E7%89%873.png"><img style="width:1322px" src="C%20C++%20IDE%20%20ca7ba/%E5%9C%96%E7%89%873.png"/></a></figure><p id="edecf11d-1fa6-46cd-a112-b86e7d574dea" class="">
+</p></div></article></body></html>

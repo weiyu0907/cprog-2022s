@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>C++ 基礎入門 3 - 控制邏輯、迴圈</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>C++ 基礎入門 3 - 流程控制及迴圈</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -654,12 +654,11 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="392eee6b-2f30-4ad8-971c-602a7902cf61" class="page mono"><header><img class="page-cover-image" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/7.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/yang-tr-wb.png"/></div><h1 class="page-title"><strong>C++ 基礎入門 3 - 控制邏輯、迴圈</strong></h1><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Notes</th><td><span class="selected-value select-value-color-green">done</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Video</th><td><span class="selected-value select-value-color-pink">incomplete</span></td></tr></tbody></table><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h2 id="9cd98080-4e84-4efa-abb5-b3431f2af19d" class="block-color-purple_background">參考資料 + 翻轉教室影音教材</h2><div id="df6a4155-6212-4494-a929-4b9587ac02c8" class="column-list"><div id="241a7345-8079-4433-a8c0-e7807ff3d8e6" style="width:75%" class="column"><figure id="76558a3a-51bf-4640-8e70-a4cd5c29f741"><a  target="_blank" href="https://youtu.be/jV-FN0k9J78?t=0" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ 基礎入門 3 - 控制邏輯 、迴圈</div><div class="bookmark-description">計算機程式及實習(2022spring)[影片分段目錄]前言介紹 ： https://youtu.be/jV-FN0k9J78&amp;t=3控制邏輯 if ： https://youtu.be/jV-FN0k9J78?t=155 for 迴圈 ： https://youtu.be/jV-FN0k9J78...</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/924317b2/img/favicon.ico" class="icon bookmark-icon"/>https://youtu.be/jV-FN0k9J78?t=0</div></div><img src="https://i.ytimg.com/vi/jV-FN0k9J78/hqdefault.jpg" class="bookmark-image"/></a></figure></div><div id="03db97a0-a695-4ee9-931f-0c6c304bbbdd" style="width:25%" class="column"><figure id="45a1041c-0b7e-41cd-ac70-be0ba80dc513" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled.png"/></a><figcaption><mark class="highlight-yellow"><strong><a  target="_blank" href="https://youtu.be/jV-FN0k9J78&amp;t=3">前言介紹</a></strong></mark></figcaption></figure></div></div><div id="1d942ca1-27fd-4645-8b01-378429fc1c48" class="column-list"><div id="96a93721-a57b-407b-83ae-105d6fdf670f" style="width:25%" class="column"><figure id="fc8f49a3-98ae-415e-bc8d-47054a0abd2d" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%201.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%201.png"/></a><figcaption><mark class="highlight-yellow"><strong><a  target="_blank" href="https://youtu.be/jV-FN0k9J78?t=155">if 控制邏輯</a></strong></mark></figcaption></figure></div><div id="966a5eff-97f5-4462-b700-78b8c6a80390" style="width:75%" class="column"><figure id="9b973393-9a0f-46fd-a56a-872bd8aab672"><a  target="_blank" href="https://www.programiz.com/cpp-programming/if-else" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ If...else (With Examples)</div><div class="bookmark-description">In this tutorial, we will learn about the C++ if...else statement and its use in decision making programs with the help of examples. The if...else statement is used to run one block of code under certain conditions and another block of code under different conditions.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/if-else</div></div><img src="https://cdn.programiz.com/cdn/farfuture/PsBB88lS1d8FUx01uVaGejDmfEeulxv5HRjyNCJpPRk/mtime:1592457238/sites/tutorial2program/files/cpp-if-else-working.png" class="bookmark-image"/></a></figure></div></div><div id="31b4cca7-2733-4b0c-8f7d-1e456c75b387" class="column-list"><div id="70575934-0daa-4171-86db-b5514aa70e4c" style="width:75%" class="column"><figure id="6b2baf43-793c-4fb2-be41-e707a5819f33"><a  target="_blank" href="https://www.programiz.com/cpp-programming/for-loop" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ for Loop</div><div class="bookmark-description">In computer programming, loops are used to repeat a block of code. For example, let&#x27;s say we want to show a message 100 times. Then instead of writing the print statement 100 times, we can use a loop. That was just a simple example; we can achieve much more efficiency and sophistication in our programs by making effective use of loops.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/for-loop</div></div><img src="https://cdn.programiz.com/sites/tutorial2program/files/cpp-for-loop-flowchart.png" class="bookmark-image"/></a></figure></div><div id="0f8719f9-8aca-4e70-bfa8-2e6b2aad20f2" style="width:25%" class="column"><figure id="5c014334-76c5-437f-81cb-b1a45c5251f4" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%202.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%202.png"/></a><figcaption><mark class="highlight-yellow"><strong><a  target="_blank" href="https://youtu.be/jV-FN0k9J78?t=866">for 迴圈</a></strong></mark> </figcaption></figure></div></div><div id="f694c7e6-7c90-4fc6-a139-40d1f309493a" class="column-list"><div id="1885cfd9-79d8-40f4-8d07-6590900446eb" style="width:25%" class="column"><figure id="9f3163ea-c2dd-410c-962d-fec7bd7b2a26" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%203.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%203.png"/></a><figcaption><mark class="highlight-yellow"><strong><a  target="_blank" href="https://youtu.be/jV-FN0k9J78?t=1665">while 迴圈 </a></strong></mark></figcaption></figure></div><div id="ddc8a81a-3466-40d1-8fd4-1d943bfe384f" style="width:75%" class="column"><figure id="e41833b5-c699-4a5c-ac8d-6bf89d31a3c7"><a  target="_blank" href="https://www.programiz.com/cpp-programming/do-while-loop" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ while and do...while Loop</div><div class="bookmark-description">In computer programming, loops are used to repeat a block of code. For example, let&#x27;s say we want to show a message 100 times. Then instead of writing the print statement 100 times, we can use a loop. That was just a simple example; we can achieve much more efficiency and sophistication in our programs by making effective use of loops.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/do-while-loop</div></div><img src="https://cdn.programiz.com/sites/tutorial2program/files/cpp-while-loop-flowchart.png" class="bookmark-image"/></a></figure></div></div><h2 id="9a088f20-5b89-450a-a2b6-c704dcb40870" class="block-color-purple_background">課程設計</h2><div id="f2534a3c-a58e-40ac-97f3-c670f46bc405" class="column-list"><div id="1d700e58-03f4-46cc-b713-ed43ca235335" style="width:18.75%" class="column"><figure id="78023c53-da57-4974-9d7b-9d517265c3c9" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%204.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%204.png"/></a></figure></div><div id="b687b893-1639-409a-b3af-d74460f460d9" style="width:81.25%" class="column"><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="982644f4-b268-460c-bda3-665dc1eb13a4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">請善加利用「教學影片傳送門」連結及 QR code，它會自動打開對應的 Youtube 影音教材。</div></figure></div></div><p id="b302d39a-d8a1-438f-9c6b-d884f7bfa569" class="">[目錄]</p><h3 id="19fc3593-2063-434b-944a-ff027b385add" class="block-color-teal_background">不需安裝的線上 C/C++ 開發工具</h3><div id="ea7d749c-5084-40dd-a571-0de92801e56d" class="column-list"><div id="02bffd9d-3744-41b2-9d2c-ba76332ac34a" style="width:50%" class="column"><figure id="3b46d11f-c480-4947-95a8-5358fdb925ab"><a  target="_blank" href="https://www.onlinegdb.com/online_c++_compiler" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Online C++ Compiler - online editor</div><div class="bookmark-description">OnlineGDB is online IDE with C++ compiler. Quick and easy way to compiler c++ program online. It supports g++ compiler for c++.</div></div><div class="bookmark-href"><img src="https://www.onlinegdb.com/favicon.ico" class="icon bookmark-icon"/>https://www.onlinegdb.com/online_c++_compiler</div></div></a><figcaption><strong>功能完整的線上 C/C++ 開發工具</strong></figcaption></figure></div><div id="a5477c6d-8f48-4542-accc-5c419e1894d4" style="width:50%" class="column"><figure id="24d97102-3bf5-40cc-a485-8389ee07b8aa"><a  target="_blank" href="https://www.programiz.com/cpp-programming/online-compiler/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ Online Compiler</div><div class="bookmark-description">The user friendly C++ online compiler that allows you to Write C++ code and run it online. The C++ text editor also supports taking input from the user and standard libraries. It uses the GCC (g++) compiler to compiler code.</div></div><div class="bookmark-href"><img src="https://cdn.programiz.com/sites/tutorial2program/files/programiz-favicon_3.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/online-compiler/</div></div></a><figcaption><strong>簡易型的 使用</strong></figcaption></figure></div></div><h3 id="7a771b24-939a-4c8a-8396-dd7baaecfd5c" class="block-color-teal_background">[課堂練習 1]：利用命令列的「檔案重新導向」取代手動輸入資料給 cin</h3><p id="ec21cf48-1a72-45ba-a300-1f0b05e3db3f" class="block-color-yellow">教學影片傳送門：</p><pre id="16f76a73-b0a2-4a33-b735-02440a18bce5" class="code code-wrap"><code># Command Shell 命令格式：
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="392eee6b-2f30-4ad8-971c-602a7902cf61" class="page mono"><header><img class="page-cover-image" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/7.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/yang-tr-wb.png"/></div><h1 class="page-title"><strong>C++ 基礎入門 3 - 流程控制及迴圈</strong></h1><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Notes</th><td><span class="selected-value select-value-color-green">done</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Video</th><td><span class="selected-value select-value-color-pink">incomplete</span></td></tr></tbody></table><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h2 id="9cd98080-4e84-4efa-abb5-b3431f2af19d" class="block-color-purple_background">參考資料 + 翻轉教室影音教材</h2><div id="df6a4155-6212-4494-a929-4b9587ac02c8" class="column-list"><div id="241a7345-8079-4433-a8c0-e7807ff3d8e6" style="width:75%" class="column"><figure id="76558a3a-51bf-4640-8e70-a4cd5c29f741"><a  target="_blank" href="https://youtu.be/jV-FN0k9J78?t=0" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ 基礎入門 3 - 控制邏輯 、迴圈</div><div class="bookmark-description">計算機程式及實習(2022spring)[影片分段目錄]前言介紹 ： https://youtu.be/jV-FN0k9J78&amp;t=3控制邏輯 if ： https://youtu.be/jV-FN0k9J78?t=155 for 迴圈 ： https://youtu.be/jV-FN0k9J78...</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/924317b2/img/favicon.ico" class="icon bookmark-icon"/>https://youtu.be/jV-FN0k9J78?t=0</div></div><img src="https://i.ytimg.com/vi/jV-FN0k9J78/hqdefault.jpg" class="bookmark-image"/></a></figure></div><div id="03db97a0-a695-4ee9-931f-0c6c304bbbdd" style="width:25%" class="column"><figure id="45a1041c-0b7e-41cd-ac70-be0ba80dc513" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled.png"/></a><figcaption><mark class="highlight-yellow"><strong><a  target="_blank" href="https://youtu.be/jV-FN0k9J78&amp;t=3">前言介紹</a></strong></mark></figcaption></figure></div></div><div id="1d942ca1-27fd-4645-8b01-378429fc1c48" class="column-list"><div id="96a93721-a57b-407b-83ae-105d6fdf670f" style="width:25%" class="column"><figure id="fc8f49a3-98ae-415e-bc8d-47054a0abd2d" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%201.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%201.png"/></a><figcaption><mark class="highlight-yellow"><strong><a  target="_blank" href="https://youtu.be/jV-FN0k9J78?t=155">if 控制邏輯</a></strong></mark></figcaption></figure></div><div id="966a5eff-97f5-4462-b700-78b8c6a80390" style="width:75%" class="column"><figure id="9b973393-9a0f-46fd-a56a-872bd8aab672"><a  target="_blank" href="https://www.programiz.com/cpp-programming/if-else" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ If...else (With Examples)</div><div class="bookmark-description">In this tutorial, we will learn about the C++ if...else statement and its use in decision making programs with the help of examples. The if...else statement is used to run one block of code under certain conditions and another block of code under different conditions.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/if-else</div></div><img src="https://cdn.programiz.com/cdn/farfuture/PsBB88lS1d8FUx01uVaGejDmfEeulxv5HRjyNCJpPRk/mtime:1592457238/sites/tutorial2program/files/cpp-if-else-working.png" class="bookmark-image"/></a></figure></div></div><div id="31b4cca7-2733-4b0c-8f7d-1e456c75b387" class="column-list"><div id="70575934-0daa-4171-86db-b5514aa70e4c" style="width:75%" class="column"><figure id="6b2baf43-793c-4fb2-be41-e707a5819f33"><a  target="_blank" href="https://www.programiz.com/cpp-programming/for-loop" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ for Loop</div><div class="bookmark-description">In computer programming, loops are used to repeat a block of code. For example, let&#x27;s say we want to show a message 100 times. Then instead of writing the print statement 100 times, we can use a loop. That was just a simple example; we can achieve much more efficiency and sophistication in our programs by making effective use of loops.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/for-loop</div></div><img src="https://cdn.programiz.com/sites/tutorial2program/files/cpp-for-loop-flowchart.png" class="bookmark-image"/></a></figure></div><div id="0f8719f9-8aca-4e70-bfa8-2e6b2aad20f2" style="width:25%" class="column"><figure id="5c014334-76c5-437f-81cb-b1a45c5251f4" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%202.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%202.png"/></a><figcaption><mark class="highlight-yellow"><strong><a  target="_blank" href="https://youtu.be/jV-FN0k9J78?t=866">for 迴圈</a></strong></mark> </figcaption></figure></div></div><div id="f694c7e6-7c90-4fc6-a139-40d1f309493a" class="column-list"><div id="1885cfd9-79d8-40f4-8d07-6590900446eb" style="width:25%" class="column"><figure id="9f3163ea-c2dd-410c-962d-fec7bd7b2a26" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%203.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%203.png"/></a><figcaption><mark class="highlight-yellow"><strong><a  target="_blank" href="https://youtu.be/jV-FN0k9J78?t=1665">while 迴圈 </a></strong></mark></figcaption></figure></div><div id="ddc8a81a-3466-40d1-8fd4-1d943bfe384f" style="width:75%" class="column"><figure id="e41833b5-c699-4a5c-ac8d-6bf89d31a3c7"><a  target="_blank" href="https://www.programiz.com/cpp-programming/do-while-loop" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ while and do...while Loop</div><div class="bookmark-description">In computer programming, loops are used to repeat a block of code. For example, let&#x27;s say we want to show a message 100 times. Then instead of writing the print statement 100 times, we can use a loop. That was just a simple example; we can achieve much more efficiency and sophistication in our programs by making effective use of loops.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/do-while-loop</div></div><img src="https://cdn.programiz.com/sites/tutorial2program/files/cpp-while-loop-flowchart.png" class="bookmark-image"/></a></figure></div></div><h2 id="9a088f20-5b89-450a-a2b6-c704dcb40870" class="block-color-purple_background">課程設計</h2><div id="f2534a3c-a58e-40ac-97f3-c670f46bc405" class="column-list"><div id="1d700e58-03f4-46cc-b713-ed43ca235335" style="width:18.75%" class="column"><figure id="78023c53-da57-4974-9d7b-9d517265c3c9" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%204.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%204.png"/></a></figure></div><div id="b687b893-1639-409a-b3af-d74460f460d9" style="width:81.25%" class="column"><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="982644f4-b268-460c-bda3-665dc1eb13a4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">請善加利用「教學影片傳送門」連結及 QR code，它會自動打開對應的 Youtube 影音教材。</div></figure></div></div><p id="b302d39a-d8a1-438f-9c6b-d884f7bfa569" class="">[目錄]</p><h3 id="19fc3593-2063-434b-944a-ff027b385add" class="block-color-teal_background">不需安裝的線上 C/C++『學習』工具</h3><div id="ea7d749c-5084-40dd-a571-0de92801e56d" class="column-list"><div id="02bffd9d-3744-41b2-9d2c-ba76332ac34a" style="width:50%" class="column"><figure id="3b46d11f-c480-4947-95a8-5358fdb925ab"><a  target="_blank" href="https://www.onlinegdb.com/online_c++_compiler" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Online C++ Compiler - online editor</div><div class="bookmark-description">OnlineGDB is online IDE with C++ compiler. Quick and easy way to compiler c++ program online. It supports g++ compiler for c++.</div></div><div class="bookmark-href"><img src="https://www.onlinegdb.com/favicon.ico" class="icon bookmark-icon"/>https://www.onlinegdb.com/online_c++_compiler</div></div></a><figcaption><strong>功能完整的線上 C/C++ </strong>『學習』<strong>工具</strong></figcaption></figure></div><div id="a5477c6d-8f48-4542-accc-5c419e1894d4" style="width:50%" class="column"><figure id="24d97102-3bf5-40cc-a485-8389ee07b8aa"><a  target="_blank" href="https://www.programiz.com/cpp-programming/online-compiler/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ Online Compiler</div><div class="bookmark-description">The user friendly C++ online compiler that allows you to Write C++ code and run it online. The C++ text editor also supports taking input from the user and standard libraries. It uses the GCC (g++) compiler to compiler code.</div></div><div class="bookmark-href"><img src="https://cdn.programiz.com/sites/tutorial2program/files/programiz-favicon_3.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/online-compiler/</div></div></a><figcaption><strong>簡易的</strong>『學習』<strong>工具</strong></figcaption></figure></div></div><h3 id="7a771b24-939a-4c8a-8396-dd7baaecfd5c" class="block-color-teal_background">[課堂練習 1]：利用命令列的『檔案重新導向』取代手動輸入資料給 cin。</h3><div id="ec5fa4b5-14e2-472a-818d-5160291e8a50" class="column-list"><div id="db4eae31-8165-4af9-9302-e545de0f5d1d" style="width:37.5%" class="column"><figure id="762575a1-c901-474c-b984-157eb938917a"><div class="source"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/w6-%E8%AA%B2%E5%A0%82%E7%B7%B4%E7%BF%921.m4a">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cbe3a2aa-0d3e-4eaa-af4c-f2280e96558b/w6-課堂練習1.m4a</a></div></figure></div><div id="7962efff-1d86-4ac7-9360-98a14b0a59ed" style="width:62.5%" class="column"><pre id="16f76a73-b0a2-4a33-b735-02440a18bce5" class="code code-wrap"><code># Command Shell 命令格式：
 type &lt;資料檔&gt; | &lt;使用 cin 接收資料的程式&gt;
 
 # 範例：
-type grade.txt | .\lab01.txt</code></pre><pre id="a996532d-4390-458d-8e60-a72bd08a7120" class="code code-wrap"><code># 資料檔格式
-&lt;欄位數&gt;
+type grade.txt | .\main.exe</code></pre></div></div><pre id="a996532d-4390-458d-8e60-a72bd08a7120" class="code code-wrap"><code># 資料檔格式
 資料1 資料2
 資料3
 ...
@@ -693,290 +692,141 @@ int main()
     cout &lt;&lt; &quot;\nData coutns : &quot; &lt;&lt; cnt &lt;&lt; endl;
 
     return 0;
-}</code></pre><p id="47500eab-fcf2-4a02-ab8f-be1cc63517c8" class="">
-</p><h3 id="19afdb7d-b145-45ac-929c-9f5e923e839b" class="block-color-teal_background">[課堂練習 2]：延續「課堂練習 1」，將讀入的資料項目以指定的「欄位數」輸出</h3><p id="1c82fece-904c-4c2d-a876-e41d0d733261" class="block-color-yellow">教學影片傳送門：</p><pre id="eb12a5dd-0fc9-43b9-9198-f22d68ee61b4" class="code code-wrap"><code># 資料檔格式
-&lt;欄位數&gt;
+}</code></pre><h3 id="9b7356ef-b7a3-46f2-a6c9-3d21fbc46464" class="block-color-teal_background">[課堂練習 2]：利用『檔案重新導向』功能，把資料依序讀入並計算出總和及平均。</h3><div id="bbfbfd7d-f980-4516-9874-e8b17042ec94" class="column-list"><div id="055a426b-cf3f-4e09-9aca-a2ceef518b2b" style="width:37.5%" class="column"><figure id="680ebe2d-aa4f-48b0-a288-6b5deda35914"><div class="source"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/w6-%E8%AA%B2%E5%A0%82%E7%B7%B4%E7%BF%922.m4a">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/148f3693-68d1-4c53-91b2-a4f6f171bf07/w6-課堂練習2.m4a</a></div></figure></div><div id="7058c4e3-5f9f-4cb3-85ec-007e6891a057" style="width:62.5%" class="column"><pre id="87bd1ee4-9b50-4d59-8c90-2ad3e34013bd" class="code code-wrap"><code># 每一筆資料由「空格」或「換行」隔開
 資料1 資料2
 資料3
 ...
 資料n
 
-# 資料檔範例： &#x27;3&#x27; 是指定的「欄位數」，後續的項目則是資料 (grade1.txt)
-3
-70 89
-45 90
-67 78 34
-89
-98 87 56
-34 89 90
-67
-56 78
-
-# 資料檔範例： &#x27;5&#x27; 是指定的「欄位數」，後續的項目則是資料 (grade2.txt)
-5
-70 89
-45 90
-67 78 34
-89
-98 87 56
-34 89 90
-67
-56 78
-</code></pre><p id="198e6d03-33d0-4eda-bbea-f7d24c53e904" class="">
-</p><p id="27b33786-4406-4e4f-b6d3-cb86caec4e44" class="block-color-yellow">輸出結果：</p><figure id="ad154ee4-3225-4636-9f7d-0ba14d228122" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%206.png"><img style="width:528px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%206.png"/></a></figure><p id="eda92afa-74ab-4d57-88f8-1b174301e02b" class="">
-</p><p id="dd6a9f06-37a0-4695-ba8a-190825a8cc2c" class="block-color-yellow">課堂練習 2 範例程式：main.cpp</p><pre id="b30ea9c3-89d6-493a-a6db-e2d017bba2a6" class="code"><code>#include &lt;iostream&gt;
-#include &lt;iomanip&gt;
-
-using namespace std;
-
-int main()
-{
-    int g;
-    int cnt = 0;
-    int col;
-
-    cin &gt;&gt; col;
-
-    while (cin &gt;&gt; g)
-    {
-        cout &lt;&lt; setw(5) &lt;&lt; g;
-        cnt++;
-        if (cnt % col == 0)
-            cout &lt;&lt; endl;
-    }
-
-    cout &lt;&lt; &quot;\nData coutns : &quot; &lt;&lt; cnt &lt;&lt; endl;
-
-    return 0;
-}</code></pre><h3 id="4d3ae9b6-7708-4f8f-a43f-96dc5eec89c5" class=""></h3><h3 id="12d4aa59-647c-4bb6-a748-4767597314c7" class="block-color-teal_background">[課堂練習 3]：「課堂練習 2」再進化，每一行資料都有自己的指定「欄位數」</h3><p id="6180ebcd-5fd8-4559-b73c-bc1b41fb4845" class="block-color-yellow">教學影片傳送門：</p><pre id="d14a493c-7aa5-47e8-a2a6-b4f3efe0fcca" class="code code-wrap"><code># 資料檔格式
-&lt;欄位數1&gt; 資料1 資料2 ...
-...
-&lt;欄位數n&gt; 資料1 資料2 ...
-
-# 資料檔範例：(grade1.txt)
-2 70 89
-2 45 90
-3 67 78 34
-1 89
-3 98 87 56
-3 34 89 90
-1 67
-2 56 78
-
-# 資料檔範例：(grade2.txt)
-4 70 89 90 78
-3 45 90 60
-2 67 78 
-1 89
-2 98 87 
-3 34 89 90
-4 67 66 77 88
-5 56 78 67 90 56</code></pre><p id="8539a260-37f3-41f2-b498-89ec5aad8fc4" class="">
-</p><p id="87f81556-1649-4044-bb95-efd01ae8428c" class="block-color-yellow">輸出結果：</p><figure id="6acc7139-642a-46bc-9ad5-3682c6f77fdd" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%207.png"><img style="width:480px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%207.png"/></a></figure><p id="11dd2433-bf8e-4cad-b0f8-bf15c844605f" class="">
-</p><p id="1617f24d-d516-43fa-bf70-c9b44592a330" class="block-color-yellow">課堂練習 3 範例程式：main.cpp</p><pre id="b79f713a-b4e2-41cc-a3c1-bb7fa71dbaaf" class="code"><code>#include &lt;iostream&gt;
-#include &lt;iomanip&gt;
-
-using namespace std;
-
-int main()
-{
-    int g;
-    int col = -1;
-
-    while (cin &gt;&gt; g)
-    {
-        if (col &lt; 0)
-        {
-            col = g - 1;
-            cout &lt;&lt; endl;
-        }
-        else
-        {
-            cout &lt;&lt; setw(5) &lt;&lt; g;
-            col--;
-        }
-    }
-
-    return 0;
-}</code></pre><h3 id="49daeee5-24c9-43ac-8671-a526676dad1f" class=""></h3><h3 id="bcf5cf88-44a3-4367-8582-3c1e0990a59e" class="block-color-teal_background">[課堂練習 4]：使用 <code>if</code> 設計簡易資料分類</h3><p id="8dca8e79-8443-4f51-83fc-b4eccc053844" class="block-color-yellow">教學影片傳送門：</p><div id="9cb6010a-7a25-4b2d-8582-3116b84e911c" class="column-list"><div id="6aab008a-2109-4702-9701-c26493aaaabc" style="width:37.5%" class="column"><ul id="12c13770-06b8-4ea9-b320-c95b82139d09" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">請依「南臺科技大學等第制與百分制單科成績對照表」，將輸入的「百分制分數」轉換成「等第制成績」。</span></li></ul><figure id="321c8b46-a176-4288-84bb-cd93276d845c" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/yang02.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/yang02.png"/></a></figure></div><div id="bb94db9e-3247-4419-8e9a-f9559bd97d62" style="width:62.5%" class="column"><figure id="6452284c-c738-4ee0-9038-da3cbfd81e71" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%208.png"><img style="width:384px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%208.png"/></a></figure></div></div><p id="fcfa0b46-8987-46ec-9d8c-55eef9cea98f" class="">
-</p><pre id="4e014eee-b962-4ea3-a74d-c09bec57c088" class="code code-wrap"><code># 資料檔格式
-資料1 
-資料2
-資料3
-...
-資料n
-
-# 資料檔範例：每一筆資料由「空格」或「換行」隔開 (grade1.txt)
-70
-45
-67
-89
-98
+# 資料檔範例： data1.txt
+1 32
+3 4 5 6
 34
-67
-56
+43
+11 22 33
 
-# 資料檔範例：每一筆資料由「空格」或「換行」隔開 (grade2.txt)
-70 89
-67 78 34
-89
-98 87 56
-67
-56 78</code></pre><p id="89c427d0-4fc2-41ef-8202-dfd9c18287aa" class="">
-</p><p id="483f7eb0-52fe-4508-b4f9-f303bddba946" class="block-color-yellow">輸出結果：</p><figure id="9ba7c563-a255-4d2f-b0dc-32c575012a05" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%209.png"><img style="width:480px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%209.png"/></a></figure><p id="53750ef7-d2e8-45de-ad5e-4660f1a33856" class="">
-</p><p id="9b766af5-3c7f-4f4a-b29c-d144789cf078" class="block-color-yellow">課堂練習 3 範例程式：main.cpp</p><pre id="ccc05bc0-9287-4e1e-bcd3-68de3085f5ed" class="code code-wrap"><code>#include &lt;iostream&gt;
+# 資料檔範例： data2.txt
+1 2 3 4
+5
+6
+7 8 9
+10</code></pre></div></div><p id="cb84f646-94d1-49f3-9fbc-bd62617ee85f" class="block-color-yellow">輸出結果：</p><figure id="31234302-4d37-4c3b-b86e-d9c05c38a8db" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%206.png"><img style="width:624px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%206.png"/></a></figure><p id="53c6eb4d-ec9c-4743-8413-b33535ef0b4b" class="block-color-yellow">課堂練習 2 範例程式：main.cpp</p><pre id="555aa31b-2bee-4b14-b5d2-f1f17911d1dd" class="code"><code>#include &lt;iostream&gt;
 
 using namespace std;
 
 int main()
 {
     int g;
+    int sum = 0;
+    int cnt = 0;
 
     while (cin &gt;&gt; g)
     {
-        if (g &gt;= 90)
-            cout &lt;&lt; &quot;A+&quot;;
-        else if (g &gt;= 85)
-            cout &lt;&lt; &quot;A&quot;;
-        else if (g &gt;= 80)
-            cout &lt;&lt; &quot;A-&quot;;
-        else if (g &gt;= 77)
-            cout &lt;&lt; &quot;B+&quot;;
-        else if (g &gt;= 73)
-            cout &lt;&lt; &quot;B&quot;;
-        else if (g &gt;= 70)
-            cout &lt;&lt; &quot;B-&quot;;
-        else if (g &gt;= 67)
-            cout &lt;&lt; &quot;C+&quot;;
-        else if (g &gt;= 63)
-            cout &lt;&lt; &quot;C&quot;;
-        else if (g &gt;= 60)
-            cout &lt;&lt; &quot;C-&quot;;
-        else if (g &gt;= 50)
-            cout &lt;&lt; &quot;D&quot;;
-        else if (g &gt;= 1)
-            cout &lt;&lt; &quot;E&quot;;
-        else if (g &gt;= 0)
-            cout &lt;&lt; &quot;X&quot;;
+        sum += g;
+        cnt++;
+    }
+
+    cout&lt;&lt;&quot;sum = &quot;&lt;&lt;sum&lt;&lt;endl;
+    cout&lt;&lt;&quot;avg = &quot;&lt;&lt;(float)sum/cnt&lt;&lt;endl;
+    
+    return 0;
+}</code></pre><h3 id="d42799ab-a28d-4d3c-89e1-392884310723" class="block-color-teal_background">[課堂練習 3]：運用迴圈(Loop)繪製特定圖騰 1</h3><div id="a2eba3fd-59bf-42da-a261-3a020ea42300" class="column-list"><div id="473c6a9e-ff66-4263-a8ba-1ff18cb3c574" style="width:37.5%" class="column"><figure id="b4ac2f7c-f5a8-4899-8912-39f418ed8707"><div class="source"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/w6-%E8%AA%B2%E5%A0%82%E7%B7%B4%E7%BF%923.m4a">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d5bfec15-2452-42ca-a747-050079e8966c/w6-課堂練習3.m4a</a></div></figure></div><div id="fed8bad2-98fb-4b26-be96-0c9e9989079d" style="width:62.5%" class="column"><p id="281f9d42-02d2-40a4-95ad-5e704717bb23" class="block-color-yellow">輸出結果：</p><figure id="fa1879b6-4435-4bc6-9730-94c03f35c980" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%207.png"><img style="width:528px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%207.png"/></a></figure></div></div><p id="234eea7b-b44d-45ee-9995-9a50ccbfc80b" class="block-color-yellow">課堂練習 3 範例程式：main.cpp</p><pre id="9da36410-dd54-4463-a6ca-1a51aef7b76c" class="code"><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+int main()
+{
+
+    for (int j = 5; j &gt;0 ; j--)
+    {
+        for (int i = 0; i &lt; j; i++)
+            cout &lt;&lt; &quot;*&quot;;
+        cout &lt;&lt; endl;
+    }
+    for (int j = 2; j &lt;6; j++)
+    {
+        for (int i = 0; i &lt; j; i++)
+            cout &lt;&lt; &quot;*&quot;;
         cout &lt;&lt; endl;
     }
 
     return 0;
-}</code></pre><h3 id="2ec6484d-f537-4e6e-9aac-5814d4efe26c" class=""></h3><h3 id="5c065623-23d3-458e-9c4d-ce3c995e6044" class="block-color-teal_background">[課堂練習 5]：函數(Function) + C++ 字串(String) <code>[補充選項]</code> </h3><p id="c7d6da88-cf9f-4d7e-a8a8-3cedb16632bc" class="block-color-yellow">教學影片傳送門：</p><ul id="d8c17ed3-bb20-434c-91b9-c8f4ea96ba01" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">將「課堂練習 4」的範例程式改用函數來實現</span></li></ul><p id="2ad987eb-b4bd-4825-a345-ad573105831b" class="block-color-yellow">課堂練習 5 範例程式：main.cpp</p><pre id="7a3e1e97-c0a4-42bf-9da8-2fd497ca14af" class="code"><code>#include &lt;iostream&gt;
-#include &lt;string&gt;
+}</code></pre><h3 id="3117bfe3-d7fd-4d8c-9662-d152b85bd4a2" class="block-color-teal_background">[課堂練習 4]：運用迴圈(Loop)繪製特定圖騰 2</h3><div id="a0c2b288-5766-402a-81e8-91d2f82a0b96" class="column-list"><div id="41063644-6e35-4697-a5d0-478ca541f0e6" style="width:37.5%" class="column"><figure id="6c8d97a6-0db7-45a8-9ad0-5733ec730049"><div class="source"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/w6-%E8%AA%B2%E5%A0%82%E7%B7%B4%E7%BF%924.m4a">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/15e823b3-d1e8-4df0-a26e-fece86451840/w6-課堂練習4.m4a</a></div></figure></div><div id="819eae43-25ce-4928-93b1-bd99b691b1ca" style="width:62.5%" class="column"><p id="bdbd11c9-ef25-4e8c-aae2-5a373349735f" class="block-color-yellow">輸出結果：</p><figure id="9a2f13e1-b719-4118-8a33-cd683b6f5d9b" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%208.png"><img style="width:528px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%208.png"/></a></figure></div></div><p id="631c4f3e-64f3-4f00-a09a-646dd2a9efe0" class="block-color-yellow">課堂練習 4 範例程式：main.cpp</p><pre id="3ae5a559-a006-4e53-9408-a436be73a627" class="code"><code>#include &lt;iostream&gt;
 
 using namespace std;
 
-string toLG(int g)
-{
-    if (g &gt;= 90) return &quot;A+&quot;;
-    if (g &gt;= 85) return &quot;A&quot;;
-    if (g &gt;= 80) return &quot;A-&quot;;
-    if (g &gt;= 77) return &quot;B+&quot;;
-    if (g &gt;= 73) return &quot;B&quot;;
-    if (g &gt;= 70) return &quot;B-&quot;;
-    if (g &gt;= 67) return &quot;C+&quot;;
-    if (g &gt;= 63) return &quot;C&quot;;
-    if (g &gt;= 60) return &quot;C-&quot;;
-    if (g &gt;= 50) return &quot;D&quot;;
-    if (g &gt;= 1)  return &quot;E&quot;;
-    return &quot;X&quot;;
-}
-
 int main()
 {
-    int g;
 
-    while (cin &gt;&gt; g)
+    for (int j = 1; j &lt; 6; j++)
     {
-        cout &lt;&lt; toLG(g) &lt;&lt; endl;
+        for (int i = 1; i &lt; j; i++)
+            cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; j &lt;&lt; endl;
+    }
+    for (int j = 4; j &gt; 0; j--)
+    {
+        for (int i = 1; i &lt; j; i++)
+            cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; j &lt;&lt; endl;
     }
 
     return 0;
-}</code></pre><h3 id="0db9d802-aeb4-45ec-8ff1-17743e4e61dd" class=""></h3><h3 id="afcb0d1f-e511-4371-a77f-3561676022cc" class="block-color-blue_background">[課堂作業 1]：將輸入的「百分制分數」轉換成「等第制成績」，並保有原資料格式。</h3><p id="0c456e08-4c92-41b5-94c5-d51bea29f9b5" class="block-color-yellow">教學影片傳送門：</p><ul id="a1159a65-60f0-46a1-9045-106639ee7255" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">「等第制成績」轉換，請參考「課堂練習 4」。</span></li></ul><ul id="18a450da-d44c-4825-80ff-ea704f60ec4f" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">如何讀取並保有原資料格式，請參考「課堂練習 3」。</span></li></ul><pre id="549a5256-ccae-44f1-8c45-2fd7b5ab32b7" class="code code-wrap"><code># 資料檔格式
-&lt;欄位數1&gt; 資料1 資料2 ...
-...
-&lt;欄位數n&gt; 資料1 資料2 ...
+}</code></pre><h3 id="460d8e83-d25b-446d-9201-da9fabe80193" class="block-color-teal_background">[課堂練習 5]：運用迴圈(Loop)繪製特定圖騰 3</h3><div id="bb083136-d053-4094-a723-35f4d894e848" class="column-list"><div id="6d0105ea-1248-47fd-ba72-5dadea3fad0a" style="width:37.5%" class="column"><figure id="9624d69c-bfdb-4ef0-8839-f02d6ed3f291"><div class="source"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/w6-%E8%AA%B2%E5%A0%82%E7%B7%B4%E7%BF%925.m4a">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/180c972e-b2a8-4791-ab26-96c93d6d4b27/w6-課堂練習5.m4a</a></div></figure></div><div id="bd89cdbf-65c2-467b-9457-a28eb61ea06b" style="width:62.5%" class="column"><p id="fe0b4486-fb7e-48da-b904-77de47cbccbc" class="block-color-yellow">輸出結果：</p><figure id="d6e03791-5e03-403b-8228-0835cbccfce5" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%209.png"><img style="width:480px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%209.png"/></a></figure></div></div><p id="e8c652bf-041f-4c44-bb7d-7f485d9e0521" class="block-color-yellow">課堂練習 5 範例程式：main.cpp</p><pre id="a86c558a-ca96-4670-aca1-e497f2d4fc1f" class="code"><code>#include &lt;iostream&gt;
 
-# 資料檔範例：(grade1.txt)
-2 70 89
-2 45 90
-3 67 78 34
-1 89
-3 98 87 56
-3 34 89 90
-1 67
-2 56 78
+using namespace std;
 
-# 資料檔範例：(grade2.txt)
-4 70 89 90 78
-3 45 90 60
-2 67 78 
-1 89
-2 98 87 
-3 34 89 90
-4 67 66 77 88
-5 56 78 67 90 56</code></pre><p id="52d445b0-fe08-42c1-b258-d6bc80d1aa23" class="">
-</p><p id="a7407322-970f-4103-9c47-c4c638097434" class="block-color-yellow">輸出結果：</p><figure id="3c78c20c-d6e2-43b4-9e8b-36f346f40bed" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2010.png"><img style="width:576px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2010.png"/></a></figure><h3 id="a8751d07-9621-445f-8039-a4494351e7b2" class=""></h3><h3 id="ea6061c8-1e77-4bf3-8147-b1522433c77b" class="block-color-blue_background">[課堂作業 2]：「課堂作業 1」的進化，請同時計算出每一行的 GPA。</h3><p id="2390d8c2-4f83-4561-b735-a0f1a34813f2" class="block-color-yellow">教學影片傳送門：</p><ul id="f60a729e-e365-4267-9e30-9b5a0d8ce03c" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">請依「課堂練習 4」的附表一「南臺科技大學等第制與百分制單科成績對照表」，計算出每一行的 GPA， <code>先預設每門課都是3學分</code>。</span></li></ul><pre id="e7487ed8-cebb-4d73-8807-c5008a5ec823" class="code"><code># GPA = 每科（學分 × 成績）的總和 / 總學分
-TGP = (等第績分1) x 學分1 + (等第績分2) x 學分2 + ... + (等第績分n) x 學分n
-GPA = TGP / (總學分數)
+int main()
+{
+    int n;
 
-# 資料檔格式：「簡單假設」每門課都是3學分
-&lt;成績數1&gt; 成績1 成績2 ...
-...
-&lt;成績數n&gt; 成績1 成績2 ...
+    cout &lt;&lt; &quot;Enter an integer : &quot;;
+    cin &gt;&gt; n;
 
-# 資料檔範例：(grade1.txt)
-2 70 89
-2 45 90
-3 67 78 34
-1 89
-3 98 87 56
-3 34 89 90
-1 67
-2 56 78
+    for (int j = 0; j &lt; n; j++)
+    {
+        for (int i = 0; i &lt; j; i++)
+            cout &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; &quot;*&quot;;
+        for (int i = 1; i &lt; (n - j - 1) * 2; i++)
+            cout &lt;&lt; &quot; &quot;;
+        if (j &lt; n - 1)
+            cout &lt;&lt; &quot;*&quot; &lt;&lt; endl;
+    }
 
-# 資料檔範例：(grade2.txt)
-4 70 89 90 78
-3 45 90 60
-2 67 78 
-1 89
-2 98 87 
-3 34 89 90
-4 67 66 77 88
-5 56 78 67 90 56</code></pre><p id="6c3186e7-5ebd-40b6-885f-7f702702eef3" class="">
-</p><p id="54ec7bdf-ccce-413c-a341-2513e02fa79e" class="block-color-yellow">輸出結果：</p><figure id="1568a04f-bc88-4ca7-9632-a08ced288e48" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2011.png"><img style="width:576px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2011.png"/></a></figure><p id="43495471-cc6d-4956-b82e-81d9a5695ba9" class="">
-</p><p id="38d8518b-c720-4325-933f-39208e202408" class="block-color-yellow">輸出結果： <code>(加分題)</code></p><figure id="1553fcc4-bc14-4987-9917-745dd5355710" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2012.png"><img style="width:576px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2012.png"/></a></figure><h3 id="7b2e0a3c-2d27-4530-9582-ea1b3e224a10" class=""></h3><h3 id="24f1e503-f95c-49f1-9b33-d3212631bf2a" class="block-color-red_background">[課堂作業 3]：進級的「課堂作業 2」，可指定每門課的學分數。 <code>(加分題)</code></h3><p id="5fde6ee0-ebc0-4b0e-a02f-71ab3325987d" class="block-color-yellow">教學影片傳送門：</p><pre id="e474223e-3fd9-45d1-a096-6828ac39a47d" class="code"><code># GPA = 每科（學分 × 成績）的總和 / 總學分
-TGP = (等第績分1) x 學分1 + (等第績分2) x 學分2 + ... + (等第績分n) x 學分n
-GPA = TGP / (總學分數)
+    return 0;
+}</code></pre><h3 id="82a9acb4-b600-4330-b8fe-a83fe1117f1a" class="block-color-blue_background">[課堂作業 1]：利用『檔案重新導向』功能，把資料依序讀入並計算出總和、最大值、最小值、及平均。</h3><div id="3603df85-bbd5-4024-bd93-cd1018717f2b" class="column-list"><div id="4556bf32-22fa-4256-b735-341a45cc83d8" style="width:37.5%" class="column"><figure id="f8633a67-1866-427c-b3e6-583ff2a21726"><div class="source"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/w6-%E8%AA%B2%E5%A0%82%E4%BD%9C%E6%A5%AD1.m4a">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/abf23533-efdd-4c13-9b99-d5007abfb6c1/w6-課堂作業1.m4a</a></div></figure></div><div id="d4cc04f5-9fb0-448e-927a-e14a2c3e2e3b" style="width:62.5%" class="column"><p id="af8cbcf5-8e2e-48b3-8437-8b7af73b1a84" class="block-color-yellow">測試資料：</p><pre id="b9efd17d-e26e-4e6e-b422-3ef0a5d6bf46" class="code code-wrap"><code># data1.txt
+1 32
+3 4 5 6
+34
+43
+11 22 33
 
-# 資料檔格式：「簡單假設」成績的順序就是科目的順序
-&lt;科目數&gt; &lt;學分1&gt; &lt;學分2&gt; ... &lt;學分n&gt; 
-&lt;成績數1&gt; 成績1 成績2 ...
-...
-&lt;成績數n&gt; 成績1 成績2 ...
+# data2.txt
+1 2 3 4
+5
+6
+7 8 9
+10</code></pre></div></div><p id="400e66bb-4de3-4c57-a824-3fc926c3343f" class="block-color-yellow">輸出結果：</p><figure id="cdead640-beff-4811-862e-b1d4434dfedd" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2010.png"><img style="width:624px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2010.png"/></a></figure><h3 id="3642f791-4602-4efe-8fb4-723a7bf82c9a" class="block-color-blue_background">[課堂作業 2]：運用迴圈(Loop)繪製三角形圖騰，輸入的整數就是中間最長的(*)柱狀圖。</h3><div id="c5cc9340-45bb-4136-aed3-c06ffcbf7cd9" class="column-list"><div id="6fa0968e-09e4-4dbb-852c-bb46a29f0608" style="width:37.5%" class="column"><figure id="a448edda-7276-4ab9-934d-e780f89074be"><div class="source"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/w6-%E8%AA%B2%E5%A0%82%E4%BD%9C%E6%A5%AD2.m4a">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bde6fe52-d2a2-4c23-9c7f-f2897c8cead0/w6-課堂作業2.m4a</a></div></figure></div><div id="b9fae539-9d52-4adf-bc58-b5b53e6ec373" style="width:62.5%" class="column"><p id="79bb7aa9-c7ff-446d-b0e8-97665b3ad887" class="block-color-yellow">輸出結果：</p><figure id="35799cb2-91eb-4b8a-8cd1-e39a0c2a1ba1" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2011.png"><img style="width:384px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2011.png"/></a></figure></div></div><h3 id="6d2d71e4-9f1e-4d47-97c1-b039c9c0b928" class="block-color-blue_background">[課堂作業 3]：利用『檔案重新導向』功能，把資料依序讀入並畫出對應的文字型(*)長條圖(bar chart)。</h3><p id="41e8bd5b-c1c2-435a-b0a0-1d7157ca4618" class="block-color-yellow">測試資料：</p><div id="5acf9552-407a-45fc-9f0e-032ad227b596" class="column-list"><div id="f2d4418d-469f-41ac-b0fc-e8a384316a54" style="width:37.5%" class="column"><figure id="adecd25b-fc2c-4e79-afc4-7c60f11a9c0d"><div class="source"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/w6-%E8%AA%B2%E5%A0%82%E4%BD%9C%E6%A5%AD3.m4a">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0a3b6c84-f6de-45ad-85ee-f6119e858be7/w6-課堂作業3.m4a</a></div></figure></div><div id="a7b82b54-1c9c-48e7-9694-3bb6eb830544" style="width:62.5%" class="column"><pre id="d0a7933a-a1c1-4b10-a887-226ffc41e578" class="code code-wrap"><code># data1.txt
+1
+3
+6
+4
+7
+2
 
-# 資料檔範例：(grade1.txt) 
-3 2 3 1
-2 70 89
-2 45 90
-3 67 78 34
-1 89
-3 98 87 56
-3 34 89 90
-1 67
-2 56 78
+# data2.txt
+1
+2
+3
+4
+5
 
-# 資料檔範例：(grade2.txt)
-5 2 4 1 3 2
-4 70 89 90 78
-3 45 90 60
-2 67 78 
-1 89
-2 98 87 
-3 34 89 90
-4 67 66 77 88
-5 56 78 67 90 56</code></pre><h3 id="217b1297-572a-4f03-9cc9-e9f0b335a38f" class=""></h3><figure id="5a523b4d-53bb-433d-ad5a-6221c1d35385" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/%E5%9C%96%E7%89%873.png"><img style="width:1322px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/%E5%9C%96%E7%89%873.png"/></a></figure><p id="fbe76128-481c-4e10-b275-08b538f7b4af" class="">
+# data3.txt
+1 2 3 4 5 4 3 2 1</code></pre></div></div><p id="3788e7fe-3c77-4628-bd6f-07e708ac6397" class="block-color-yellow">輸出結果：</p><figure id="ada7e08a-3827-4a50-9c9e-9cd905b44571" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2012.png"><img style="width:528px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/Untitled%2012.png"/></a></figure><p id="8cef31cc-a9da-4270-98df-1997ca5ba3f9" class="">
+</p><p id="138f3fd1-30de-4348-a34c-9a305237f955" class="">
+</p><p id="6a40374e-abdd-4c82-91dd-ab1a702afb53" class="">
+</p><figure id="5a523b4d-53bb-433d-ad5a-6221c1d35385" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/%E5%9C%96%E7%89%873.png"><img style="width:1322px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%203%2045a10/%E5%9C%96%E7%89%873.png"/></a></figure><p id="fbe76128-481c-4e10-b275-08b538f7b4af" class="">
 </p></div></article>
 <script>hljs.highlightAll();</script>
 </body></html>

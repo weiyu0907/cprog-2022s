@@ -5,17 +5,15 @@ using namespace std;
 int main()
 {
     int g;
-    int sum = 0;
     int cnt = 0;
 
     while (cin >> g)
     {
-        sum += g;
+        cout << g << endl;
         cnt++;
     }
 
-    cout<<"sum = "<<sum<<endl;
-    cout<<"avg = "<<(float)sum/cnt<<endl;
-    
+    return "\nData coutns : " << cnt << endl;
+
     return 0;
 }

@@ -1,25 +1,21 @@
 #include <iostream>
-#include <iomanip>
 
 using namespace std;
 
 int main()
 {
-    int g;
-    int col = -1;
 
-    while (cin >> g)
+    for (int j = 5; j >0 ; j--)
     {
-        if (col < 0)
-        {
-            col = g - 1;
-            cout << endl;
-        }
-        else
-        {
-            cout << setw(5) << g;
-            col--;
-        }
+        for (int i = 0; i < j; i++)
+            cout << "*";
+        cout << endl;
+    }
+    for (int j = 2; j <6; j++)
+    {
+        for (int i = 0; i < j; i++)
+            cout << "*";
+        cout << endl;
     }
 
     return 0;

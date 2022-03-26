@@ -1,0 +1,849 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>C++ 基礎入門 4 - 流程控制及迴圈應用</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="fd1c4834-eb45-4f84-81d7-3306ae641b83" class="page mono"><header><img class="page-cover-image" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/7.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/yang-tr-wb.png"/></div><h1 class="page-title"><strong>C++ 基礎入門 4 - 流程控制及迴圈應用</strong></h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=bcc4bbe0-1958-4c68-97ed-6a813f29d58e" id="soundon"></iframe></div></figure><h2 id="794e77d1-0ad5-470a-9928-18131891ee1d" class="block-color-purple_background">參考資料</h2><figure id="a49e7023-511c-48b4-9f01-cf6b308e35a8"><a  target="_blank" href="https://www.programiz.com/cpp-programming/if-else" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ If...else (With Examples)</div><div class="bookmark-description">In this tutorial, we will learn about the C++ if...else statement and its use in decision making programs with the help of examples. The if...else statement is used to run one block of code under certain conditions and another block of code under different conditions.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/if-else</div></div><img src="https://cdn.programiz.com/cdn/farfuture/PsBB88lS1d8FUx01uVaGejDmfEeulxv5HRjyNCJpPRk/mtime:1592457238/sites/tutorial2program/files/cpp-if-else-working.png" class="bookmark-image"/></a></figure><figure id="5cbdccd8-dbe1-444f-aad4-7191e191e8ec"><a  target="_blank" href="https://www.programiz.com/cpp-programming/for-loop" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ for Loop</div><div class="bookmark-description">In computer programming, loops are used to repeat a block of code. For example, let&#x27;s say we want to show a message 100 times. Then instead of writing the print statement 100 times, we can use a loop. That was just a simple example; we can achieve much more efficiency and sophistication in our programs by making effective use of loops.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/for-loop</div></div><img src="https://cdn.programiz.com/sites/tutorial2program/files/cpp-for-loop-flowchart.png" class="bookmark-image"/></a></figure><figure id="b907f203-e4ab-4bd2-82f9-a7d974697d60"><a  target="_blank" href="https://www.programiz.com/cpp-programming/do-while-loop" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ while and do...while Loop</div><div class="bookmark-description">In computer programming, loops are used to repeat a block of code. For example, let&#x27;s say we want to show a message 100 times. Then instead of writing the print statement 100 times, we can use a loop. That was just a simple example; we can achieve much more efficiency and sophistication in our programs by making effective use of loops.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/do-while-loop</div></div><img src="https://cdn.programiz.com/sites/tutorial2program/files/cpp-while-loop-flowchart.png" class="bookmark-image"/></a></figure><h2 id="39caecd8-0829-436e-8c7a-f8187b830c75" class="block-color-purple_background">課程設計</h2><div id="d055a0bb-9bff-40bb-814f-2ebc96b980b7" class="column-list"><div id="239bb72b-a6c4-4758-b837-461faf7d63de" style="width:12.5%" class="column"><figure id="4617b5bf-6ed6-41ac-b799-6543e9ef5e79" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled.png"/></a></figure></div><div id="d802cf86-f866-4728-bbac-355b192f14da" style="width:87.50000000000003%" class="column"><div id="yang-id-001" class="yang-class-001">目 錄 (課堂練習/作業)：</div>
+<a href="#8879c07b-d5dc-4611-a441-eb2f722e38ab" class="yang-class-002">[課堂練習 1]：利用命令列的「檔案重新導向」取代手動輸入資料給 cin</a>
+<a href="#307ed62a-db29-474a-9fd5-5e8c1fea5c9d" class="yang-class-002">[課堂練習 2]：延續「課堂練習 1」，將讀入的資料項目以指定的「欄位數」輸出</a>
+<a href="#0f215bd5-708e-4379-8013-d9ca1133f08f" class="yang-class-002">[課堂練習 3]：「課堂練習 2」再進化，每一行資料都有自己的指定「欄位數」</a>
+<a href="#4d48b6c5-dd47-459e-9089-88b3b94110b8" class="yang-class-002">[課堂練習 4]：使用 if 設計簡易資料分類</a>
+<a href="#d89d680c-3d33-4421-8656-e85018b30e1e" class="yang-class-002">[課堂練習 5]：函數(Function) + C++ 字串(String) <mark class="highlight-red">(補充選項)</mark></a>
+<a href="#51357e93-5277-4f49-8739-8a264ebb10ef" class="yang-class-002">[課堂作業 1]：將輸入的「百分制分數」轉換成「等第制成績」，並保有原資料格式。</a>
+<a href="#f62f21c0-f513-4cf8-8b66-f436d72c829c" class="yang-class-002">[課堂作業 2]：「課堂作業 1」的進化，請同時計算出每一行的 GPA。</a>
+<a href="#40a4961d-b179-48c7-86b8-14ca6205de6b" class="yang-class-002">[課堂作業 3]：「課堂作業 2」再進化，可指定每門課的學分數。 <mark class="highlight-red">(加分題)</mark></a>
+</div></div><h3 id="a0913198-a5d0-4cec-90a1-c6dcc3282057" class="block-color-teal_background">不需安裝的線上 C/C++ 開發工具</h3><div id="8e80ca78-5232-4e22-8a90-37a39795e341" class="column-list"><div id="094bb7d8-8100-4853-8f35-56a01774bb64" style="width:50%" class="column"><figure id="1786bd79-d2a7-4cb0-87bf-d2ff9b364461"><a  target="_blank" href="https://www.onlinegdb.com/online_c++_compiler" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Online C++ Compiler - online editor</div><div class="bookmark-description">OnlineGDB is online IDE with C++ compiler. Quick and easy way to compiler c++ program online. It supports g++ compiler for c++.</div></div><div class="bookmark-href"><img src="https://www.onlinegdb.com/favicon.ico" class="icon bookmark-icon"/>https://www.onlinegdb.com/online_c++_compiler</div></div></a><figcaption><strong>功能完整的線上 C/C++ 開發工具</strong></figcaption></figure></div><div id="6350373a-2913-4c78-87ad-3f07329ee276" style="width:50%" class="column"><figure id="7365823b-1a82-4479-bdfc-e3703e655c20"><a  target="_blank" href="https://www.programiz.com/cpp-programming/online-compiler/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ Online Compiler</div><div class="bookmark-description">The user friendly C++ online compiler that allows you to Write C++ code and run it online. The C++ text editor also supports taking input from the user and standard libraries. It uses the GCC (g++) compiler to compiler code.</div></div><div class="bookmark-href"><img src="https://cdn.programiz.com/sites/tutorial2program/files/programiz-favicon_3.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/online-compiler/</div></div></a><figcaption><strong>簡易型的 使用</strong></figcaption></figure></div></div><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="8879c07b-d5dc-4611-a441-eb2f722e38ab" class="block-color-teal_background">[課堂練習 1]：利用命令列的「檔案重新導向」取代手動輸入資料給 cin</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=79255ae6-8690-4dd3-8041-bca23daddfe8" id="soundon"></iframe></div></figure><pre id="e7b1b178-8c66-491f-b7c9-6b3a45bd0f4a" class="code code-wrap"><code># Command Shell 命令格式：
+type &lt;資料檔&gt; | &lt;使用 cin 接收資料的程式&gt;
+
+# 範例：
+type grade.txt | .\main.exe</code></pre><pre id="58d7754c-c5da-4f0f-8846-1ed43f8f5a6e" class="code code-wrap"><code># 資料檔格式
+資料1 資料2
+資料3
+...
+資料n
+
+# 資料檔範例：每一筆資料由「空格」或「換行」隔開 (grade.txt)
+70 89
+45 90
+67 78 34
+89
+98 87 56
+34 89 90
+67
+56 78</code></pre><h3 id="05afd6d7-929c-40ba-985c-3079b7e124e8" class="block-color-yellow">輸出結果：</h3><figure id="6c30483d-630f-4cf2-8fe1-b2fcc1834b0a" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%201.png"><img style="width:528px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%201.png"/></a></figure><h3 id="65cc8749-e7cc-4552-995d-b6b208632a12" class="block-color-yellow">範例程式：main.cpp</h3><figure id="ca9538bb-465d-4606-9a57-774d56f8e425" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%202.png"><img style="width:432px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%202.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="307ed62a-db29-474a-9fd5-5e8c1fea5c9d" class="block-color-teal_background">[課堂練習 2]：延續「課堂練習 1」，將讀入的資料項目以指定的「欄位數」輸出</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=2de627e9-a0d8-4cc1-92af-4a0d5bd4bad5" id="soundon"></iframe></div></figure><pre id="7d8a0f3b-4a5a-41f9-b376-008fd51fe437" class="code code-wrap"><code># 資料檔格式
+&lt;欄位數&gt;
+資料1 資料2
+資料3
+...
+資料n
+
+# 資料檔範例： &#x27;3&#x27; 是指定的「欄位數」，後續的項目則是資料 (grade1.txt)
+3
+70 89
+45 90
+67 78 34
+89
+98 87 56
+34 89 90
+67
+56 78
+
+# 資料檔範例： &#x27;5&#x27; 是指定的「欄位數」，後續的項目則是資料 (grade2.txt)
+5
+70 89
+45 90
+67 78 34
+89
+98 87 56
+34 89 90
+67
+56 78</code></pre><h3 id="97ff66f4-42a1-49d6-8cee-c5b357470a54" class="block-color-yellow">輸出結果：</h3><figure id="d5a82e53-5492-4836-9c21-282b729476ce" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%203.png"><img style="width:528px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%203.png"/></a></figure><h3 id="de6c0a80-5530-4677-9696-84645569f2da" class="block-color-yellow">範例程式：main.cpp</h3><figure id="6f136e3a-97c1-43c0-87c1-54e26fdc927b" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%204.png"><img style="width:384px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%204.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="0f215bd5-708e-4379-8013-d9ca1133f08f" class="block-color-teal_background">[課堂練習 3]：「課堂練習 2」再進化，每一行資料都有自己的指定「欄位數」</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=e47bca50-827f-4725-a51b-b753d3c3e03c" id="soundon"></iframe></div></figure><pre id="e1d259c5-78df-4f38-a153-a4e3f31a08ae" class="code code-wrap"><code># 資料檔格式
+&lt;欄位數1&gt; 資料1 資料2 ...
+...
+&lt;欄位數n&gt; 資料1 資料2 ...
+
+# 資料檔範例：(grade1.txt)
+2 70 89
+2 45 90
+3 67 78 34
+1 89
+3 98 87 56
+3 34 89 90
+1 67
+2 56 78
+
+# 資料檔範例：(grade2.txt)
+4 70 89 90 78
+3 45 90 60
+2 67 78 
+1 89
+2 98 87 
+3 34 89 90
+4 67 66 77 88
+5 56 78 67 90 56</code></pre><h3 id="bff08bef-f487-4da8-9090-ca1c71d979d7" class="block-color-yellow">輸出結果：</h3><figure id="ffb88841-74ec-4635-8b29-100b1d085927" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%205.png"><img style="width:480px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%205.png"/></a></figure><h3 id="d5e52e67-61b9-4d17-914a-265a55aafed5" class="block-color-yellow">範例程式：main.cpp</h3><figure id="e85ec456-1ec9-411b-b21a-6add4630e4ac" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%206.png"><img style="width:384px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%206.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="4d48b6c5-dd47-459e-9089-88b3b94110b8" class="block-color-teal_background">[課堂練習 4]：使用 if 設計簡易資料分類</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=8924f6d5-a235-41d7-bff2-bcc0583c17a7" id="soundon"></iframe></div></figure><div id="62c38218-64f9-47a6-9ecf-35b011903be1" class="column-list"><div id="597f23a9-dd56-436b-8fe1-d55c3607b884" style="width:37.5%" class="column"><ul id="3f4b162d-f1e3-4072-bd9c-8eca7e4a0698" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">請依「南臺科技大學等第制與百分制單科成績對照表」，將輸入的「百分制分數」轉換成「等第制成績」。</span></li></ul><figure id="d68dfe25-7a1a-423e-b510-82bd31b3f299" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/yang02.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/yang02.png"/></a></figure></div><div id="2f950750-797d-4e21-a597-b5851df67f89" style="width:62.5%" class="column"><figure id="4cc890e0-c6fa-41b4-8541-0108377b1eef" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%207.png"><img style="width:384px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%207.png"/></a></figure></div></div><p id="52a1ac68-d3be-48da-8c09-b607e39c9b19" class="">
+</p><pre id="11133727-7ca1-4c8f-98c5-d10073ea8fb1" class="code code-wrap"><code># 資料檔格式
+資料1 
+資料2
+資料3
+...
+資料n
+
+# 資料檔範例：每一筆資料由「空格」或「換行」隔開 (grade1.txt)
+70
+45
+67
+89
+98
+34
+67
+56
+
+# 資料檔範例：每一筆資料由「空格」或「換行」隔開 (grade2.txt)
+70 89
+67 78 34
+89
+98 87 56
+67
+56 78</code></pre><h3 id="7d748dd8-88bf-460b-8f26-9251d1387183" class="block-color-yellow">輸出結果：</h3><figure id="43bdb693-3b70-4981-9701-b6f53293ace2" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%208.png"><img style="width:480px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%208.png"/></a></figure><h3 id="d113685a-16f1-4496-adbe-7636714d3c98" class="block-color-yellow">範例程式：main.cpp</h3><figure id="5bc90446-c359-4102-ae8e-71babf50043a" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%209.png"><img style="width:288px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%209.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="d89d680c-3d33-4421-8656-e85018b30e1e" class="block-color-teal_background">[課堂練習 5]：函數(Function) + C++ 字串(String) <mark class="highlight-red">(補充選項)</mark></h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=667aa34c-6c31-4fec-87fe-8a983d9ef3ce" id="soundon"></iframe></div></figure><ul id="bb38f15a-5f8e-4547-8928-66eeefdd7f0f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">將「課堂練習 4」的範例程式改用函數來實現</span></li></ul><h3 id="1594e264-e807-4a61-a674-6fbf2fc23852" class="block-color-yellow">範例程式：main.cpp</h3><figure id="32a6a17c-aba1-4257-b611-9ca3cf791ca2" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%2010.png"><img style="width:336px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%2010.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="51357e93-5277-4f49-8739-8a264ebb10ef" class="block-color-blue_background">[課堂作業 1]：將輸入的「百分制分數」轉換成「等第制成績」，並保有原資料格式。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=37fd7110-5d91-4164-9cf4-920108e33d26" id="soundon"></iframe></div></figure><ul id="4a76d1f4-d4b2-4b36-932e-9a7130f20791" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">「等第制成績」轉換，請參考「課堂練習 4」。</span></li></ul><ul id="3526b287-d5f0-48db-b569-157c174789e3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">如何讀取並保有原資料格式，請參考「課堂練習 3」。</span></li></ul><pre id="760689b3-9495-46df-8897-d72d870d0e94" class="code code-wrap"><code># 資料檔格式
+&lt;欄位數1&gt; 資料1 資料2 ...
+...
+&lt;欄位數n&gt; 資料1 資料2 ...
+
+# 資料檔範例：(grade1.txt)
+2 70 89
+2 45 90
+3 67 78 34
+1 89
+3 98 87 56
+3 34 89 90
+1 67
+2 56 78
+
+# 資料檔範例：(grade2.txt)
+4 70 89 90 78
+3 45 90 60
+2 67 78 
+1 89
+2 98 87 
+3 34 89 90
+4 67 66 77 88
+5 56 78 67 90 56</code></pre><h3 id="f11f809c-0f42-430e-8a26-ad7f9fdc747d" class="block-color-yellow">輸出結果：</h3><figure id="f3d0c41f-9bec-4e56-ade7-98e0d1a37526" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%2011.png"><img style="width:576px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%2011.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="f62f21c0-f513-4cf8-8b66-f436d72c829c" class="block-color-blue_background">[課堂作業 2]：「課堂作業 1」的進化，請同時計算出每一行的 GPA。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=77077824-701e-4343-9fff-67735c86a929" id="soundon"></iframe></div></figure><div id="7b8b6172-0fda-456c-a3cd-f23c0efeaf24" class="column-list"><div id="cc14dd04-6a3c-43f8-bbcb-0923c232e82b" style="width:43.75%" class="column"><ul id="a992e59b-576a-428d-8837-40df66207a84" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">請依「南臺科技大學等第制與百分制單科成績對照表」，計算出每一行的 GPA，預設每門課都是3學分。</span></li></ul></div><div id="2e471789-5287-4ff1-b46e-cdd30c3e649f" style="width:56.25%" class="column"><figure id="afcde1eb-d7e0-4ba8-865f-0ca4feef3aa1" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%207.png"><img style="width:384px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%207.png"/></a></figure></div></div><pre id="227c0f69-8f6a-410d-bbcd-4a1f381b4614" class="code"><code># GPA = 每科（學分 × 成績）的總和 / 總學分
+TGP = (等第績分1) x 學分1 + (等第績分2) x 學分2 + ... + (等第績分n) x 學分n
+GPA = TGP / (總學分數)
+
+# 資料檔格式：「簡單假設」每門課都是3學分
+&lt;成績數1&gt; 成績1 成績2 ...
+...
+&lt;成績數n&gt; 成績1 成績2 ...
+
+# 資料檔範例：(grade1.txt)
+2 70 89
+2 45 90
+3 67 78 34
+1 89
+3 98 87 56
+3 34 89 90
+1 67
+2 56 78
+
+# 資料檔範例：(grade2.txt)
+4 70 89 90 78
+3 45 90 60
+2 67 78 
+1 89
+2 98 87 
+3 34 89 90
+4 67 66 77 88
+5 56 78 67 90 56</code></pre><h3 id="b5bd722e-d024-49ee-8a02-146ad8822c38" class="block-color-yellow">輸出結果：</h3><figure id="aedb3627-7b8f-41c7-b2b9-b221d4a54e65" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%2012.png"><img style="width:576px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%2012.png"/></a></figure><h3 id="7f657bac-50a1-4c6e-978b-76766bc9b0c0" class="block-color-yellow">輸出結果：<mark class="highlight-red">(加分題)</mark></h3><figure id="e2c732fb-55bb-43f7-bb5b-b8a456ad97a9" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%2013.png"><img style="width:576px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/Untitled%2013.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="40a4961d-b179-48c7-86b8-14ca6205de6b" class="block-color-red_background">[課堂作業 3]：「課堂作業 2」再進化，可指定每門課的學分數。 <mark class="highlight-red">(加分題)</mark></h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=a9de9415-abc4-4ce9-8cab-55af1d6c361f" id="soundon"></iframe></div></figure><pre id="8248eab4-a8c4-4458-bae3-f34722a96b9d" class="code"><code># GPA = 每科（學分 × 成績）的總和 / 總學分
+TGP = (等第績分1) x 學分1 + (等第績分2) x 學分2 + ... + (等第績分n) x 學分n
+GPA = TGP / (總學分數)
+
+# 資料檔格式：「簡單假設」成績的順序就是科目的順序
+&lt;科目數&gt; &lt;學分1&gt; &lt;學分2&gt; ... &lt;學分n&gt; 
+&lt;成績數1&gt; 成績1 成績2 ...
+...
+&lt;成績數n&gt; 成績1 成績2 ...
+
+# 資料檔範例：(grade1.txt) 
+3 2 3 1
+2 70 89
+2 45 90
+3 67 78 34
+1 89
+3 98 87 56
+3 34 89 90
+1 67
+2 56 78
+
+# 資料檔範例：(grade2.txt)
+5 2 4 1 3 2
+4 70 89 90 78
+3 45 90 60
+2 67 78 
+1 89
+2 98 87 
+3 34 89 90
+4 67 66 77 88
+5 56 78 67 90 56</code></pre><h3 id="05a8b43e-1c6a-4af0-a673-bdc1b5e93e8e" class=""></h3><figure id="02d0e388-dadc-421b-a80e-aa488161eb33" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/%E5%9C%96%E7%89%873.png"><img style="width:1322px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%204%204617b/%E5%9C%96%E7%89%873.png"/></a></figure><p id="de450606-dedd-4de5-86ff-b664264824ae" class="">
+</p></div></article>
+<script>hljs.highlightAll();</script>
+</body></html>

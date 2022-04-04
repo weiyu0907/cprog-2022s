@@ -1,0 +1,833 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>期中考複習 (計算機程式及實習)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="255b20e6-f494-4378-ba89-d3aef3d12b07" class="page mono"><header><img class="page-cover-image" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/7.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/yang-tr-wb.png"/></div><h1 class="page-title">期中考複習 (計算機程式及實習)</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h2 id="f1a9b466-7ae0-4137-8fbd-634741b145ca" class="block-color-purple_background">試題屬性說明及暫定的給分標準，以實際考試狀況再行調整</h2><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=66d3e3e4-3935-4bdb-b034-19b5e22beca0" id="soundon"></iframe></div></figure><ul id="108b0e36-8644-4b39-9b05-653d04c5314e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">1 ~ 6</mark> 每題<mark class="highlight-red">『10分』</mark>，加分題再加<mark class="highlight-red">『10分』</mark>。</li></ul><ul id="a1ad0c21-a34b-4bf1-a360-a6c6593fb6dc" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">7 ~ 10</mark> 每題<mark class="highlight-red">『20分』</mark>。</li></ul><ul id="bb719651-52e4-463d-878c-1faac5a1b0ff" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">1 ~ 7</mark> 題是<mark class="highlight-red">『在家考試(Take-home Exam)』</mark>，<mark class="highlight-red">題目不會變動</mark>期中考當天檢查繳交。</li></ul><ul id="01abea15-a4bc-4361-8532-0446aa166524" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">加分題及 8 ~ 10</mark> 題是現場<mark class="highlight-red">『開卷考試(Open-book Exam)』</mark>，會運用到 1 ~ 7 題的解題技巧，問題解決（Problem Solving）」實力的檢測。</li></ul><ul id="02f85772-b6e3-4eef-8aac-4a512320e192" class="bulleted-list"><li style="list-style-type:disc">共計<mark class="highlight-red">『160分』</mark>，超過『100分』的部分計入平時成績。</li></ul><h2 id="7267e9e9-d059-4d9e-9353-95ced404cfd0" class="block-color-purple_background">期中考題設計</h2><div id="d0117290-a8d1-445a-9e5b-242331046b69" class="column-list"><div id="e9140c1f-9e12-409b-8398-e5bed80f09dc" style="width:12.5%" class="column"><figure id="3e02f18a-520c-4c7f-b6c5-542f272b2ee2" class="image"><a href="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/Untitled.png"><img style="width:144px" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/Untitled.png"/></a></figure></div><div id="693d7f7e-409f-464b-9381-953188136471" style="width:87.50000000000003%" class="column"><div id="yang-id-001" class="yang-class-001">目 錄：</div>
+<a href="#146bbd7c-02c6-4f92-ba75-730befff1e86" class="yang-class-002">[實作問題 1]：輸出 1 ~ n 中所有可以被 3 整除的整數。</a>
+<a href="#2bcd5e83-2b68-4150-b972-12af651305be" class="yang-class-002">[實作問題 2]：挑出並加總『不三不四』(不可被3和4整除)的數字。</a>
+<a href="#0e081c9f-10e3-4bbc-bc74-bdb31b2def50" class="yang-class-002">[實作問題 3]：輸出 1 ~ n 中全部整數、偶數、奇數、被四整除的整數。</a>
+<a href="#d2e10645-3fa2-4a06-9f9f-bd6d8453f9a3" class="yang-class-002">[實作問題 4]：使用 if 找出最小值(min)及最大值(max)並將其輸出。</a>
+<a href="#d1c7ad7d-1ede-4f96-9257-155e117d00c9" class="yang-class-002">[實作問題 5]：依管線(pipe)導入的整數資料繪出『*』號條狀圖。</a>
+<a href="#9535ba44-7de6-4f96-91a5-cd00f7633d14" class="yang-class-002">[實作問題 6]：依管線導入的整數資料，依『奇/偶』數繪出『*/#』號條狀圖。</a>
+<a href="#3a93d321-9085-4e27-918c-3d0cc12680a5" class="yang-class-002">[實作問題 7]：成績等第積分平均(GPA)計算。</a>
+<a href="#fb986938-113c-4842-9bfc-30574bffa0d4" class="yang-class-002">[實作問題 8 ~ 10]：題目描述期中考時公布!</a>
+</div></div><h3 id="de378fda-f8f9-49c0-8c5e-36dce638e327" class="block-color-blue_background">線上 C/C++ 開發工具</h3><ul id="6965d8cb-2f09-4c10-ab31-721d913da060" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">建議使用本機端的 VSCode + TDM-GCC</span></li></ul><ul id="31b5d30d-68d4-4357-8d1f-895f263234cb" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">如果無法使用本機端的開發環境，考試時可以使用底下的線上開發工具。</span></li></ul><figure id="5dd6a71a-a958-43d1-955c-75a5983de86a"><a  target="_blank" href="https://www.onlinegdb.com/online_c++_compiler" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Online C++ Compiler - online editor</div><div class="bookmark-description">OnlineGDB is online IDE with C++ compiler. Quick and easy way to compiler c++ program online. It supports g++ compiler for c++.</div></div><div class="bookmark-href"><img src="https://www.onlinegdb.com/favicon.ico" class="icon bookmark-icon"/>https://www.onlinegdb.com/online_c++_compiler</div></div></a><figcaption><strong>功能完整的線上 C/C++ 開發工具</strong></figcaption></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="146bbd7c-02c6-4f92-ba75-730befff1e86" class="block-color-teal_background">[實作問題 1]：輸出 1 ~ n 中所有可以被 3 整除的整數。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=1d18d1e9-f84d-4e5d-ab06-7d083f98ff40" id="soundon"></iframe></div></figure><ul id="09aee70a-9f3c-4060-ad40-9c38c61d7a02" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第5周 課堂作業 1</span></li></ul><h3 id="31608f00-f517-4679-ab63-b14eb3ec124e" class="block-color-yellow">基本題輸出結果：(每個數字用4格寬度輸出)</h3><pre id="89b5ddd2-4a70-43c9-b647-82601273705d" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob01&gt; echo 10 | .\main.exe 
+   3   6   9
+
+PS C:\cprog-2022s\src\week08\prob01&gt; echo 30 | .\main.exe
+   3   6   9  12  15  18  21  24  27  30
+
+PS C:\cprog-2022s\src\week08\prob01&gt; echo 100 | .\main.exe
+   3   6   9  12  15  18  21  24  27  30  33  36  39  42  45  48  51  54  57  60  63  66  69  72  75  78  81  84  87  90  93  96  99</code></pre><h3 id="60fa4b84-3760-4267-b974-2228db07fb83" class="block-color-yellow">加分題輸出結果：</h3><div id="5fcd5550-cd73-4638-aab8-575cc8ecbedc" class="column-list"><div id="83e5d953-4d49-427f-b04f-df11c996f626" style="width:18.75%" class="column"><figure id="a6bb0ceb-0eed-43eb-a7cf-f5748118233d" class="image"><a href="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/yang02.png"><img style="width:144px" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/yang02.png"/></a></figure></div><div id="9cc34362-f51f-486a-9274-4613fe95a252" style="width:81.25%" class="column"><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="039c455f-ff07-422e-a32e-0093470601bc"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">加分題目描述期中考時公布!</div></figure></div></div><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="2bcd5e83-2b68-4150-b972-12af651305be" class="block-color-teal_background">[實作問題 2]：挑出並加總『不三不四』(不可被3和4整除)的數字。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=b76a1057-6ad3-4afb-98b7-92a9c7ecdecd" id="soundon"></iframe></div></figure><ul id="efb3a9f6-945a-4b6a-b49e-0f3a9774a4ee" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第5周 課堂作業 1</span></li></ul><ul id="f8960e45-f88b-4718-ae94-c6795a83e93e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">運用我們在作業中所使用的讀取管線(|)資料的技巧，用 cin 讀取由管線導入的整數資料。</span></li></ul><ul id="3fac5078-1d1d-4a4a-a542-341519504133" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">把整數資料中不3不4(不可被3及4整除)的數字輸出，每個數字用4格寬度輸出。</span></li></ul><ul id="5f227e9a-c34d-4362-94a3-88132444c8af" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">把整數資料中不3不4(不可被3及4整除)的數字加總，在資料讀取結束後輸出總和。</span></li></ul><h3 id="be51b699-b734-4e5f-a375-d79d5d65bfb1" class="block-color-yellow">測試資料：</h3><pre id="a399c039-890d-4ea0-81f5-d57626d6fb4f" class="code code-wrap"><code>PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test1.txt
+      32       2      15       2      48      98      33      53      52      90
+      49      55      80      26      68      33      95      15      65      69
+      48      99      93      37      98      83      19      52      44      11
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test2.txt
+      29      26      37      97      29      59      51      35      98      92
+      55      63      99       4      70      29      79       2      99      63
+      43      18      11      30      83      25      75      76      73      81
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test3.txt
+       5       6       5       1       6       1       2       3       6       2
+       3       6       1       5       1       2       1       1       2       5
+       3       3       4       6       3       5       1       2       1       4
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test4.txt
+       6       5       3       2       6       4       2       2       6       6
+       5       2       2       6       5       2       5       6       5       6
+       3       4       6       6       1       1       5       2       4       1</code></pre><h3 id="3a006678-9e21-48af-8e7f-b792e2fac8fc" class="block-color-yellow">輸出結果：</h3><pre id="d8f11684-1040-4519-a11f-58a3686589bd" class="code code-wrap"><code>
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test1.txt | .\main.exe
+   2   2  98  53  49  55  26  95  65  37  98  83  19  11
+sum of n3n4 # = 693
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test2.txt | .\main.exe
+  29  26  37  97  29  59  35  98  55  70  29  79   2  43  11  83  25  73
+sum of n3n4 # = 880
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test3.txt | .\main.exe
+   5   5   1   1   2   2   1   5   1   2   1   1   2   5   5   1   2   1
+sum of n3n4 # = 43
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test4.txt | .\main.exe
+   5   2   2   2   5   2   2   5   2   5   5   1   1   5   2   1
+sum of n3n4 # = 47</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="0e081c9f-10e3-4bbc-bc74-bdb31b2def50" class="block-color-teal_background">[實作問題 3]：輸出 1 ~ n 中全部整數、偶數、奇數、被四整除的整數。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=3d41a329-5694-4fae-a433-658ffcfb51db" id="soundon"></iframe></div></figure><ul id="c9b89ec2-10e0-4931-8fa2-2ae453f4786a" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第5周 課堂作業 3</span></li></ul><h3 id="6ae1ac6f-82f2-49c4-98ec-17c3e32326ee" class="block-color-yellow">基本題輸出結果：</h3><pre id="42e3438a-5024-4000-b48f-2fa93cb247ce" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob03&gt; echo 10 | .\main.exe
+All     :    1   2   3   4   5   6   7   8   9  10
+Even    :    2   4   6   8  10
+Odd     :    1   3   5   7   9
+Div. 4  :    4   8
+
+PS C:\cprog-2022s\src\week08\prob03&gt; echo 20 | .\main.exe
+All     :    1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
+Even    :    2   4   6   8  10  12  14  16  18  20
+Odd     :    1   3   5   7   9  11  13  15  17  19
+Div. 4  :    4   8  12  16  20</code></pre><h3 id="132210ec-646d-450e-9190-8b06b2300d8d" class="block-color-yellow">加分題輸出結果：</h3><div id="a8643760-941c-45d9-b8ef-82216c1eccff" class="column-list"><div id="dd4fea34-a622-4b6d-b5a4-e5719cd6470c" style="width:18.75%" class="column"><figure id="54b8441d-2dfc-45a6-80dd-43184b4ecd6d" class="image"><a href="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/yang02.png"><img style="width:144px" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/yang02.png"/></a></figure></div><div id="cd56c23c-1e6c-4725-b427-50a52ca45310" style="width:81.25%" class="column"><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="a4407624-c1c9-460a-b373-8880521582b1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">加分題目描述期中考時公布!</div></figure></div></div><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="d2e10645-3fa2-4a06-9f9f-bd6d8453f9a3" class="block-color-teal_background">[實作問題 4]：使用 if 找出最小值(min)及最大值(max)並將其輸出。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=4a7edeee-7d00-4e8a-8699-f3c395e53abb" id="soundon"></iframe></div></figure><ul id="aa2c61de-7888-4d7c-a7ce-743fadeadff6" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第6周 課堂作業 1</span></li></ul><ul id="7ef7f903-6ef1-47bf-80ed-d3cf38107e7b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">輸入5個整數依序存入 a、b、c、d、e 等變數。</span></li></ul><ul id="f01b7ee5-d2fe-48c1-a8dd-11852a387068" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">使用條件判斷式 if-else 或 if-else-if， 辨識 a、b、c、d、e 的關係。</span></li></ul><ul id="cf8dc064-840c-442f-8d6f-d3f251c8e1d6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">找出 a、b、c、d、e 中的最小值(min)及最大值(max)並將其輸出。</span></li></ul><h3 id="334e71ad-888a-4436-aba4-e582c7d50916" class="block-color-yellow">輸出結果：</h3><pre id="0d7b0f91-b234-4d1a-98e1-86b86a3fb63d" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob04&gt; echo &quot;1 2 3 4 5&quot; | .\main.exe
+    1    2    3    4    5
+min = 1
+max = 5
+
+PS C:\cprog-2022s\src\week08\prob04&gt; echo &quot;1 3 2 5 4&quot; | .\main.exe
+    1    3    2    5    4
+min = 1
+max = 5
+
+PS C:\cprog-2022s\src\week08\prob04&gt; echo &quot;5 4 3 2 1&quot; | .\main.exe
+    5    4    3    2    1
+min = 1
+max = 5</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="d1c7ad7d-1ede-4f96-9257-155e117d00c9" class="block-color-teal_background">[實作問題 5]：依管線(pipe)導入的整數資料繪出『*』號條狀圖。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=750f164e-e5d7-43ca-bed1-090eff03b810" id="soundon"></iframe></div></figure><ul id="fa129f20-dc1a-4060-9482-3b9424a945ce" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第6周 課堂作業 3</span></li></ul><ul id="21644c88-c4e7-4662-9fbd-a662d8653288" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">運用作業中所使用的讀取管線(|)資料的技巧，用 cin 讀取由管線導入的整數資料。</span></li></ul><ul id="566253f7-4ebe-4f3f-ad36-6591764d19b8" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">依 cin 讀到的整數資料，繪出對應『*』號條狀圖。</span></li></ul><h3 id="c7a574c6-94ac-4f90-b789-73beec8d6d98" class="block-color-yellow">輸出結果：</h3><pre id="1acaaa3f-eaa3-467d-b8b4-c13fdd13ad66" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob05&gt; echo &quot;1 2 3 4 5&quot; | .\main.exe
+*
+**
+***
+****
+*****
+
+PS C:\cprog-2022s\src\week08\prob05&gt; echo &quot;1 2 3 4 5 4 3 2 1&quot; | .\main.exe
+*
+**
+***
+****
+*****
+****
+***
+**
+*
+
+PS C:\cprog-2022s\src\week08\prob05&gt; echo &quot;5 4 3 2 1&quot; | .\main.exe        
+*****
+****
+***
+**
+*</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="9535ba44-7de6-4f96-91a5-cd00f7633d14" class="block-color-teal_background">[實作問題 6]：依管線導入的整數資料，依『奇/偶』數繪出『*/#』號條狀圖。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=27e14543-9ce6-4eaa-ba7a-05a3e7e40210" id="soundon"></iframe></div></figure><ul id="05f822c5-b31b-474d-8274-a2762e8fa8de" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第6周 課堂作業 3</span></li></ul><ul id="e62a2e34-81f8-435d-b646-cc21fc47c07e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">運用作業中所使用的讀取管線(|)資料的技巧，用 cin 讀取由管線導入的整數資料。</span></li></ul><ul id="c498de6d-b031-43cc-93dd-af04ff6d2ca5" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">依資料的奇/偶特性選擇條狀圖輸出符號。</span></li></ul><ul id="28b0067e-9ff6-4945-b181-20963e5a6dbb" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">如果資料是偶數使用『#』繪出條狀圖，如果資料是奇數則使用『*』 號。</span></li></ul><h3 id="688ab06b-786a-4372-9528-8a8e4cea15e0" class="block-color-yellow">測試資料：</h3><pre id="91a1fc1d-5cd0-4773-9cb8-2f1a43485bee" class="code code-wrap"><code>PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type test1.txt
+       6       5       2       6       6
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type test2.txt
+       6       2       6      10       2
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type test3.txt
+       3       1       9      10       3
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type test4.txt
+       3       8       3       4       9</code></pre><h3 id="29a777f6-d214-4648-a2ef-8ad032acf441" class="block-color-yellow">輸出結果：</h3><pre id="46a92c73-2f90-433d-a807-288a576c57a1" class="code code-wrap"><code>PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type .\test1.txt | .\main.exe
+  6 : ######
+  5 : *****
+  2 : ##
+  6 : ######
+  6 : ######
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type .\test2.txt | .\main.exe
+  6 : ######
+  2 : ##
+  6 : ######
+ 10 : ##########
+  2 : ##
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type .\test3.txt | .\main.exe
+  3 : ***
+  1 : *
+  9 : *********
+ 10 : ##########
+  3 : ***
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type .\test4.txt | .\main.exe
+  3 : ***
+  8 : ########
+  3 : ***
+  4 : ####
+  9 : *********</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="3a93d321-9085-4e27-918c-3d0cc12680a5" class="block-color-teal_background">[實作問題 7]：成績等第積分平均(GPA)計算。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=679cbccc-ccd1-4c6c-87cc-56b1cc6d2e35" id="soundon"></iframe></div></figure><ul id="45967772-9104-453b-bec5-0e87a7f9e320" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第7周 課堂作業 3</span></li></ul><div id="79d14c3e-7872-44c1-8954-abd106fc0351" class="column-list"><div id="b55372a9-0bac-40ee-9407-06c751d6eb9b" style="width:43.75%" class="column"><ul id="9f74e264-68d1-4cf9-992a-0a2b9dfabd67" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">請依「南臺科技大學等第制與百分制單科成績對照表」，計算出每一行的 GPA。</span></li></ul></div><div id="3e1b63e0-9743-4e92-aa5b-5bb0cc16b0bd" style="width:56.25%" class="column"><figure id="4d8052a7-2b82-44cd-abbd-506f43b905cc" class="image"><a href="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/Untitled%201.png"><img style="width:384px" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/Untitled%201.png"/></a></figure></div></div><ul id="fb942c0f-23b5-419c-a038-2b29933c68b8" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">資料格式： &lt;科目數&gt; &lt;成績1&gt; &lt;學分1&gt; &lt;成績2&gt; &lt;學分2&gt; ... &lt;成績n&gt; &lt;學分n&gt;</span></li></ul><h3 id="4db94278-e40d-49ee-9c2e-1533d39989ce" class="block-color-yellow">測試資料：(grade1.txt)</h3><pre id="02954016-a407-4041-97cf-1f95c2220005" class="code code-wrap"><code>2 70 3 89 2
+2 45 3 90 1
+3 67 2 78 2 34 3
+1 89 4
+3 98 1 87 1 56 4</code></pre><h3 id="efca27c2-35d7-4389-a8b7-224b74f6e7c2" class="block-color-yellow">輸出結果：</h3><pre id="56318c6a-c6bc-43ad-bdcd-eb1119781367" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; type .\grade1.txt | .\main.exe
+B-  A            3.2
+E   A+           1.1
+C+  B+  E        1.6
+A                  4
+A+  A   D          2
+
+PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; echo &quot;1 90&quot; | .\main.exe
+A+               4.3
+
+PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; echo &quot;2 90 3 80 2&quot; | .\main.exe
+A+  A-           4.1
+
+PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; echo &quot;2 90 1 80 3&quot; | .\main.exe
+A+  A-           3.9
+
+PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; echo &quot;3 90 2 80 3 65 4&quot; | .\main.exe
+A+  A-  C        3.1</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="fb986938-113c-4842-9bfc-30574bffa0d4" class="block-color-teal_background">[實作問題 8 ~ 10]：題目描述期中考時公布!</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=0b0ccb89-5686-4caa-a4c5-e185a25b7654" id="soundon"></iframe></div></figure><div id="0d9896b7-cdaa-4ae5-a54e-51e46e975cd0" class="column-list"><div id="c022c8cd-9523-4f49-8531-af46537147b0" style="width:18.75%" class="column"><figure id="533cdfcc-41a8-4d79-bdff-d90a320a0c48" class="image"><a href="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/yang02.png"><img style="width:144px" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/yang02.png"/></a></figure></div><div id="ae2958cb-d10c-4787-afa5-b458ea864389" style="width:81.25%" class="column"><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="acda5e06-7618-4192-8e70-59b8d55fb5d2"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">這些題目並不複雜，主要是讓各位檢視自身的問題解決(Problem Solving)能力，如何在有限的時間內，運用題目 1 ~ 7 學到的技巧，解決未曾看過的程式設計問題。</div></figure></div></div><h3 id="78ce64a5-9941-44cb-a6d9-83a1d85327bb" class="block-color-yellow"></h3><figure id="e742c404-4465-4944-8535-83a3e8694f73" class="image"><a href="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/%E5%9C%96%E7%89%873.png"><img style="width:1322px" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A4%87%E7%BF%92%20(%E8%A8%88%E7%AE%97%E6%A9%9F%203e02f/%E5%9C%96%E7%89%873.png"/></a></figure><p id="a13d9268-4ce7-4d85-b434-8e4b815ea64e" class="">
+</p></div></article>
+<script>hljs.highlightAll();</script>
+</body></html>

@@ -1,0 +1,1302 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>期中考解題說明 (計算機程式及實習)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="77886a82-08c5-44bb-8e30-d90638952906" class="page mono"><header><img class="page-cover-image" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A7%A3%E9%A1%8C%E8%AA%AA%E6%98%8E%20(%E8%A8%88%20f1803/7.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A7%A3%E9%A1%8C%E8%AA%AA%E6%98%8E%20(%E8%A8%88%20f1803/yang-tr-wb.png"/></div><h1 class="page-title">期中考解題說明 (計算機程式及實習)</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h2 id="c599370d-c4bd-4bac-9481-6243f44b5eac" class="block-color-purple_background">期中考題設計</h2><div id="8f901a86-ce00-4538-81bf-597766fa2451" class="column-list"><div id="c181e3e2-24f5-43b2-9b42-abf8b0efebfc" style="width:12.5%" class="column"><figure id="f1803015-0e6a-4bfc-8feb-a5dc6d0524d6" class="image"><a href="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A7%A3%E9%A1%8C%E8%AA%AA%E6%98%8E%20(%E8%A8%88%20f1803/Untitled.png"><img style="width:144px" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A7%A3%E9%A1%8C%E8%AA%AA%E6%98%8E%20(%E8%A8%88%20f1803/Untitled.png"/></a></figure></div><div id="6860f0f0-7240-4d14-8675-1abb97fa2ba0" style="width:87.50000000000003%" class="column"><div id="yang-id-001" class="yang-class-001">目 錄：</div>
+<a href="#6cbc26e6-1ae7-483c-bf78-c0e696f7c06f" class="yang-class-002">[實作問題 1]：輸出 1 ~ n 中所有可以被 3 整除的整數。</a>
+<a href="#036b27de-1298-41e8-9391-c783d592b9d3" class="yang-class-002">[實作問題 2]：挑出並加總不三不四(不可被3和4整除)的數字。</a>
+<a href="#2c0b244d-efe6-4494-b533-c40ecc6925f0" class="yang-class-002">[實作問題 3]：輸出 1 ~ n 中全部整數、偶數、奇數、被四整除的整數。</a>
+<a href="#0c38c62a-ed61-4c9d-961c-ffd4775599f7" class="yang-class-002">[實作問題 4]：使用 if 找出最小值(min)及最大值(max)並將其輸出。</a>
+<a href="#d7c57edf-1e13-4310-a895-d6862d4fd56b" class="yang-class-002">[實作問題 5]：依管線(pipe)導入的整數資料繪出『*』號條狀圖。</a>
+<a href="#16d5bac7-2a15-4760-9afa-405cdfa671b0" class="yang-class-002">[實作問題 6]：依管線導入的整數資料，依『奇/偶』數繪出『*/#』號條狀圖。</a>
+<a href="#bfefab2c-a115-44e8-bbe6-72f77bb598a0" class="yang-class-002">[實作問題 7]：成績等第積分平均(GPA)計算。</a>
+<a href="#02b56a8c-cc15-4a41-a31e-d3138aa983ab" class="yang-class-002">[實作問題 8]：使用 if 找出中間值(mid)並將其輸出。</a>
+<a href="#130192e8-5140-4f48-846d-8bd3e0b151a5" class="yang-class-002">[實作問題 9]：將整數n中的所有『數字』加總並將總和輸出。</a>
+<a href="#c0718cc3-6e5a-40b2-98e2-2cd88917f42a" class="yang-class-002">[實作問題 10]：計算『3』出現在整數資料列中的次數。</a>
+</div></div><h3 id="4c8f6cd0-1fda-4ebf-8f12-191e8fb26582" class="block-color-teal_background">線上 C/C++ 開發工具</h3><figure id="df42213e-2a3b-4298-b4d1-bcc16235ef3f"><a  target="_blank" href="https://www.onlinegdb.com/online_c++_compiler" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Online C++ Compiler - online editor</div><div class="bookmark-description">OnlineGDB is online IDE with C++ compiler. Quick and easy way to compiler c++ program online. It supports g++ compiler for c++.</div></div><div class="bookmark-href"><img src="https://www.onlinegdb.com/favicon.ico" class="icon bookmark-icon"/>https://www.onlinegdb.com/online_c++_compiler</div></div></a><figcaption><strong>功能完整的線上 C/C++ 開發工具</strong></figcaption></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="6cbc26e6-1ae7-483c-bf78-c0e696f7c06f" class="block-color-teal_background">[實作問題 1]：輸出 1 ~ n 中所有可以被 3 整除的整數。</h3><ul id="af62fc52-5a16-48fe-872e-2db10f2171d3" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第5周 課堂作業 1</span></li></ul><h3 id="c573a119-e63e-4647-b45a-0fb2fd6c7722" class="block-color-yellow_background">參考程式(基本題)：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=42f0e2ea-1fd9-41c5-8269-0ad91e885792" id="soundon"></iframe></div></figure><pre id="ec742704-d402-4a04-adea-59a85972385d" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int n;
+
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i++)
+    {
+        if (i % 3 == 0)
+            cout &lt;&lt; setw(4) &lt;&lt; i;
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre><h3 id="00d81280-a1f1-434b-9fbe-07fb5717a262" class="block-color-yellow">基本題輸出結果：(每個數字用4格寬度輸出)</h3><pre id="2f12c2c6-7ace-4c03-919d-d5f8f64e13a2" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob01&gt; echo 10 | .\main.exe 
+   3   6   9
+
+PS C:\cprog-2022s\src\week08\prob01&gt; echo 30 | .\main.exe
+   3   6   9  12  15  18  21  24  27  30
+
+PS C:\cprog-2022s\src\week08\prob01&gt; echo 100 | .\main.exe
+   3   6   9  12  15  18  21  24  27  30  33  36  39  42  45  48  51  54  57  60  63  66  69  72  75  78  81  84  87  90  93  96  99</code></pre><h3 id="00a98713-592d-4048-a9d4-1e78346dffe7" class="block-color-yellow_background">參考程式(加分題)：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=705b64e3-6092-4c3d-a364-0abc78d073cf" id="soundon"></iframe></div></figure><pre id="c85d453c-7ce2-4586-af36-25eb2a14a1e1" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+   int n;
+   int col = 0;
+
+   cin &gt;&gt; n;
+
+   for (int i = 1; i &lt;= n; i++)
+   {
+      if (i % 3 == 0)
+      {
+         cout &lt;&lt; setw(4) &lt;&lt; i;
+         col++;
+         if (col % 5 == 0)
+         {
+            cout &lt;&lt; endl;
+            col = 0;
+         }
+      }
+   }
+   cout &lt;&lt; endl;
+   return 0;
+}</code></pre><h3 id="5e90c627-00cd-418e-80ed-1f4cc83dd5ab" class="block-color-yellow">加分題輸出結果：(每行最多5個數字)</h3><pre id="4e86aced-b124-448f-bef3-81b0bc0e4537" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob01&gt; echo 10 | .\mainxx.exe    
+   3   6   9
+
+PS C:\cprog-2022s\src\week08\prob01&gt; echo 30 | .\mainxx.exe
+   3   6   9  12  15
+  18  21  24  27  30
+
+PS C:\cprog-2022s\src\week08\prob01&gt; echo 100 | .\mainxx.exe 
+   3   6   9  12  15
+  18  21  24  27  30
+  33  36  39  42  45
+  48  51  54  57  60
+  63  66  69  72  75
+  78  81  84  87  90
+  93  96  99</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="036b27de-1298-41e8-9391-c783d592b9d3" class="block-color-teal_background">[實作問題 2]：挑出並加總不三不四(不可被3和4整除)的數字。</h3><ul id="bfa38026-2452-4138-b8df-a8903a2230bf" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第5周 課堂作業 1</span></li></ul><ul id="be63141e-378b-4acf-8144-fea5b49cfe0c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">運用我們在作業中所使用的讀取管線(|)資料的技巧，用 cin 讀取由管線導入的整數資料。</span></li></ul><ul id="9532a8bb-c2c9-4cd5-a08e-7f998f1b4202" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">把整數資料中不3不4(不可被3及4整除)的數字輸出，每個數字用4格寬度輸出。</span></li></ul><ul id="1da6b5a8-5764-4e34-aff5-6abe2a7f4279" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">把整數資料中不3不4(不可被3及4整除)的數字加總，在資料讀取結束後輸出總和。</span></li></ul><h3 id="c1287834-dc6d-486e-bbc0-90a090a92a56" class="block-color-yellow_background">參考程式：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=cba7ad83-fa4e-48c7-b17e-f7016379109c" id="soundon"></iframe></div></figure><pre id="75437144-d741-4eb0-aaa0-906115e326c6" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int n;
+    int n3n4 = 0;
+
+    while (cin &gt;&gt; n)
+    {
+        if ((n % 3 != 0) &amp;&amp; (n % 4 != 0))
+        {
+            n3n4 += n;
+            cout &lt;&lt; setw(4) &lt;&lt; n;
+        }
+    }
+    cout &lt;&lt; endl
+         &lt;&lt; &quot;sum of n3n4 # = &quot; &lt;&lt; n3n4 &lt;&lt; endl;
+
+    return 0;
+}</code></pre><h3 id="ccf84e38-348b-4de4-aa85-4c430155d31e" class="block-color-yellow">測試資料：</h3><pre id="53509fd2-7e0f-453f-91da-2613ec0bbb1d" class="code code-wrap"><code>PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test1.txt
+      32       2      15       2      48      98      33      53      52      90
+      49      55      80      26      68      33      95      15      65      69
+      48      99      93      37      98      83      19      52      44      11
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test2.txt
+      29      26      37      97      29      59      51      35      98      92
+      55      63      99       4      70      29      79       2      99      63
+      43      18      11      30      83      25      75      76      73      81
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test3.txt
+       5       6       5       1       6       1       2       3       6       2
+       3       6       1       5       1       2       1       1       2       5
+       3       3       4       6       3       5       1       2       1       4
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test4.txt
+       6       5       3       2       6       4       2       2       6       6
+       5       2       2       6       5       2       5       6       5       6
+       3       4       6       6       1       1       5       2       4       1</code></pre><h3 id="c56617bb-d709-4054-9ae4-8ab1cca6d27e" class="block-color-yellow">輸出結果：</h3><pre id="4f0aabdd-f816-4d20-8f7b-5062d54dde79" class="code code-wrap"><code>
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test1.txt | .\main.exe
+   2   2  98  53  49  55  26  95  65  37  98  83  19  11
+sum of n3n4 # = 693
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test2.txt | .\main.exe
+  29  26  37  97  29  59  35  98  55  70  29  79   2  43  11  83  25  73
+sum of n3n4 # = 880
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test3.txt | .\main.exe
+   5   5   1   1   2   2   1   5   1   2   1   1   2   5   5   1   2   1
+sum of n3n4 # = 43
+
+PS D:cprog-2022s\src\week08\prob02-w05-hw01&gt; type .\test4.txt | .\main.exe
+   5   2   2   2   5   2   2   5   2   5   5   1   1   5   2   1
+sum of n3n4 # = 47</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="2c0b244d-efe6-4494-b533-c40ecc6925f0" class="block-color-teal_background">[實作問題 3]：輸出 1 ~ n 中全部整數、偶數、奇數、被四整除的整數。</h3><ul id="56a20d2f-7443-40c3-8e6f-f79c209926f4" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第5周 課堂作業 3</span></li></ul><h3 id="122b91ae-d06f-4658-b321-97c7bc570c30" class="block-color-yellow_background">參考程式(基本題)：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=7414dec7-78d2-42fc-a47e-fe75153c64b9" id="soundon"></iframe></div></figure><pre id="f4c4900d-c83b-4b04-b261-23f181caa59b" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; &quot;All     : &quot;;
+    for (int i = 1; i &lt;= n; i++)
+        cout &lt;&lt; setw(4) &lt;&lt; i;
+
+    cout &lt;&lt; endl &lt;&lt; &quot;Even    : &quot;;
+    for (int i = 1; i &lt;= n; i++)
+        if (i % 2 == 0)
+            cout &lt;&lt; setw(4) &lt;&lt; i;
+
+    cout &lt;&lt; endl &lt;&lt; &quot;Odd     : &quot;;
+    for (int i = 1; i &lt;= n; i++)
+        if (i % 2 != 0)
+            cout &lt;&lt; setw(4) &lt;&lt; i;
+
+    cout &lt;&lt; endl &lt;&lt; &quot;Div. 4  : &quot;;
+    for (int i = 1; i &lt;= n; i++)
+        if (i % 4 == 0)
+            cout &lt;&lt; setw(4) &lt;&lt; i;
+
+    return 0;
+}</code></pre><h3 id="103b60d9-8c59-43b1-ad7e-7fc454ff1c85" class="block-color-yellow">基本題輸出結果：</h3><pre id="d790fb0e-6225-4cc0-873d-753b0c591f29" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob03&gt; echo 10 | .\main.exe
+All     :    1   2   3   4   5   6   7   8   9  10
+Even    :    2   4   6   8  10
+Odd     :    1   3   5   7   9
+Div. 4  :    4   8
+
+PS C:\cprog-2022s\src\week08\prob03&gt; echo 20 | .\main.exe
+All     :    1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
+Even    :    2   4   6   8  10  12  14  16  18  20
+Odd     :    1   3   5   7   9  11  13  15  17  19
+Div. 4  :    4   8  12  16  20</code></pre><h3 id="4d43b7bd-4648-4112-b0ca-5062d2feb51b" class="block-color-yellow_background">參考程式(加分題)：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=cf3616ae-df02-4a32-964b-0d1bd6b155cf" id="soundon"></iframe></div></figure><pre id="6bd9c62d-dcd9-4293-8e94-7c56b33d5a16" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int op, n;
+    cin &gt;&gt; op;
+    cin &gt;&gt; n;
+
+    if (op == 0)
+    {
+        cout &lt;&lt; &quot;All     : &quot;;
+        for (int i = 1; i &lt;= n; i++)
+            cout &lt;&lt; setw(4) &lt;&lt; i;
+    }
+    else if (op == 1)
+    {
+        cout &lt;&lt; &quot;Even    : &quot;;
+        for (int i = 1; i &lt;= n; i++)
+            if (i % 2 == 0)
+                cout &lt;&lt; setw(4) &lt;&lt; i;
+    }
+    else if (op == 2)
+    {
+        cout &lt;&lt; &quot;Odd     : &quot;;
+        for (int i = 1; i &lt;= n; i++)
+            if (i % 2 != 0)
+                cout &lt;&lt; setw(4) &lt;&lt; i;
+    }
+    else if (op == 3)
+    {
+        cout &lt;&lt; &quot;Div. 4  : &quot;;
+        for (int i = 1; i &lt;= n; i++)
+            if (i % 4 == 0)
+                cout &lt;&lt; setw(4) &lt;&lt; i;
+    }
+
+    return 0;
+}</code></pre><h3 id="b734d84a-a33f-4aa0-bcef-9692261a3873" class="block-color-yellow">加分題輸出結果：(選擇單一條件輸出)</h3><ul id="59d1380d-27a1-4e58-936c-1031997b12d0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">全部整數(0)、偶數(1)、奇數(2)、被四整除的整數(3)</span></li></ul><pre id="9755764c-60a0-4a3f-ad79-d7f97d8a23b1" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\w05-hw03&gt; echo 0 15 | .\mainxx.exe
+All     :    1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
+
+PS C:\cprog-2022s\src\week08\w05-hw03&gt; echo 1 15 | .\mainxx.exe
+Even    :    2   4   6   8  10  12  14
+
+PS C:\cprog-2022s\src\week08\w05-hw03&gt; echo 2 15 | .\mainxx.exe
+Odd     :    1   3   5   7   9  11  13  15
+
+PS C:\cprog-2022s\src\week08\w05-hw03&gt; echo 3 15 | .\mainxx.exe
+Div. 4  :    4   8  12</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="0c38c62a-ed61-4c9d-961c-ffd4775599f7" class="block-color-teal_background">[實作問題 4]：使用 if 找出最小值(min)及最大值(max)並將其輸出。</h3><ul id="e00ffeed-1159-471a-908e-e97517e0b6f1" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第6周 課堂作業 1</span></li></ul><ul id="a930cec2-91f9-41b6-8c1a-9fef02b13d30" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">輸入5個整數依序存入 a、b、c、d、e 等變數。</span></li></ul><ul id="e5806ac1-375a-46f3-bf47-6817025bd28d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">使用條件判斷式 if-else 或 if-else-if， 辨識 a、b、c、d、e 的關係。</span></li></ul><ul id="0101e822-7f68-44d0-8760-8378284e2cd9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">找出 a、b、c、d、e 中的最小值(min)及最大值(max)並將其輸出。</span></li></ul><h3 id="0d42c829-873a-4eb7-b43d-33ecd4e5bfbe" class="block-color-yellow_background">參考程式：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=fcd47a2e-1664-4626-87a5-dab95bc47b7b" id="soundon"></iframe></div></figure><pre id="d21f64bf-17a4-4559-b416-9f2e488892aa" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;climits&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int a, b, c, d, e;
+
+    cin &gt;&gt; a;
+    cin &gt;&gt; b;
+    cin &gt;&gt; c;
+    cin &gt;&gt; d;
+    cin &gt;&gt; e;
+
+    int max = a;
+    int min = a;
+
+    min = (min &gt; b) ? b : min;
+    min = (min &gt; c) ? c : min;
+    min = (min &gt; d) ? d : min;
+    min = (min &gt; e) ? e : min;
+
+    max = (max &lt; b) ? b : max;
+    max = (max &lt; c) ? c : max;
+    max = (max &lt; d) ? d : max;
+    max = (max &lt; e) ? e : max;
+
+    cout &lt;&lt; setw(5) &lt;&lt; a
+         &lt;&lt; setw(5) &lt;&lt; b
+         &lt;&lt; setw(5) &lt;&lt; c
+         &lt;&lt; setw(5) &lt;&lt; d
+         &lt;&lt; setw(5) &lt;&lt; e &lt;&lt; endl;
+    cout &lt;&lt; &quot;min = &quot; &lt;&lt; min &lt;&lt; endl;
+    cout &lt;&lt; &quot;max = &quot; &lt;&lt; max &lt;&lt; endl;
+
+    return 0;
+}</code></pre><h3 id="cf48b16b-f2a8-4223-812c-a68d1b696201" class="block-color-yellow">輸出結果：</h3><pre id="27322619-d584-4a5e-b14c-b0d4bdc59a06" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob04&gt; echo &quot;1 2 3 4 5&quot; | .\main.exe
+    1    2    3    4    5
+min = 1
+max = 5
+
+PS C:\cprog-2022s\src\week08\prob04&gt; echo &quot;1 3 2 5 4&quot; | .\main.exe
+    1    3    2    5    4
+min = 1
+max = 5
+
+PS C:\cprog-2022s\src\week08\prob04&gt; echo &quot;5 4 3 2 1&quot; | .\main.exe
+    5    4    3    2    1
+min = 1
+max = 5</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="d7c57edf-1e13-4310-a895-d6862d4fd56b" class="block-color-teal_background">[實作問題 5]：依管線(pipe)導入的整數資料繪出『*』號條狀圖。</h3><ul id="1757d2b4-2ebd-4c0e-a01d-843f3f4766b0" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第6周 課堂作業 3</span></li></ul><ul id="8457dbca-5ece-4b14-a192-4cb608064e2f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">運用作業中所使用的讀取管線(|)資料的技巧，用 cin 讀取由管線導入的整數資料。</span></li></ul><ul id="6256cf22-e8ba-4500-9885-6015952dc5ac" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">依 cin 讀到的整數資料，繪出對應『*』號條狀圖。</span></li></ul><h3 id="85af2801-4aea-4c56-a8e8-e9d3bb9de6fa" class="block-color-yellow_background">參考程式：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=0c345c7d-bf0b-41d6-8d7c-52e2966db190" id="soundon"></iframe></div></figure><pre id="7ffb92e8-4f8a-4bef-bdf3-23a105cba89e" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+  int n;
+
+  while (cin &gt;&gt; n)
+  {
+    for (int i = 0; i &lt; n; i++)
+    {
+      cout &lt;&lt; &quot;*&quot;;
+    }
+    cout &lt;&lt; endl;
+  }
+
+  return 0;
+}</code></pre><h3 id="f4119a35-b472-49e6-b77c-8563c70c111f" class="block-color-yellow">輸出結果：</h3><pre id="d5a1490b-cc36-4e36-955c-393a80dccb28" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob05&gt; echo &quot;1 2 3 4 5&quot; | .\main.exe
+*
+**
+***
+****
+*****
+
+PS C:\cprog-2022s\src\week08\prob05&gt; echo &quot;1 2 3 4 5 4 3 2 1&quot; | .\main.exe
+*
+**
+***
+****
+*****
+****
+***
+**
+*
+
+PS C:\cprog-2022s\src\week08\prob05&gt; echo &quot;5 4 3 2 1&quot; | .\main.exe        
+*****
+****
+***
+**
+*</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="16d5bac7-2a15-4760-9afa-405cdfa671b0" class="block-color-teal_background">[實作問題 6]：依管線導入的整數資料，依『奇/偶』數繪出『*/#』號條狀圖。</h3><ul id="d26f74eb-176a-4b39-9303-4f75513271e6" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第6周 課堂作業 3</span></li></ul><ul id="be0be5da-0d23-4fa4-877e-85c222a3dc59" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">運用作業中所使用的讀取管線(|)資料的技巧，用 cin 讀取由管線導入的整數資料。</span></li></ul><ul id="4d6686dc-ec99-495d-b748-9381678259ce" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">依資料的奇/偶特性選擇條狀圖輸出符號。</span></li></ul><ul id="f096af8e-39b2-411e-a3dd-9caf3c066714" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">如果資料是偶數使用『#』繪出條狀圖，如果資料是奇數則使用『*』 號。</span></li></ul><h3 id="6d4a3991-e786-483c-ab03-8af0d8dba182" class="block-color-yellow_background">參考程式：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=8efd2758-9db9-40df-9a70-2b4bd6407c62" id="soundon"></iframe></div></figure><pre id="ef4fb871-0559-499b-99f3-b35146e236fb" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int n;
+
+    while (cin &gt;&gt; n)
+    {
+        cout &lt;&lt; setw(3) &lt;&lt; n &lt;&lt; &quot; : &quot;;
+        for (int i = 0; i &lt; n; i++)
+        {
+            cout &lt;&lt; ((n % 2 == 0) ? &quot;#&quot; : &quot;*&quot;);
+        }
+        cout &lt;&lt; endl;
+    }
+
+    return 0;
+}</code></pre><h3 id="e0bf196a-b9f6-47d1-94f1-a89d716d55ed" class="block-color-yellow">測試資料：</h3><pre id="aae7fabe-ed43-4e14-abae-a519346e1de1" class="code code-wrap"><code>PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type test1.txt
+       6       5       2       6       6
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type test2.txt
+       6       2       6      10       2
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type test3.txt
+       3       1       9      10       3
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type test4.txt
+       3       8       3       4       9</code></pre><h3 id="74b1d691-a1bf-4fb0-bb27-a7c91821ec2c" class="block-color-yellow">輸出結果：</h3><pre id="bfbd0b20-da5f-42e4-9949-125f56d09ac5" class="code code-wrap"><code>PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type .\test1.txt | .\main.exe
+  6 : ######
+  5 : *****
+  2 : ##
+  6 : ######
+  6 : ######
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type .\test2.txt | .\main.exe
+  6 : ######
+  2 : ##
+  6 : ######
+ 10 : ##########
+  2 : ##
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type .\test3.txt | .\main.exe
+  3 : ***
+  1 : *
+  9 : *********
+ 10 : ##########
+  3 : ***
+
+PS D:\cprog-2022s\src\week08\prob06-w06-hw03&gt; type .\test4.txt | .\main.exe
+  3 : ***
+  8 : ########
+  3 : ***
+  4 : ####
+  9 : *********</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="bfefab2c-a115-44e8-bbe6-72f77bb598a0" class="block-color-teal_background">[實作問題 7]：成績等第積分平均(GPA)計算。</h3><ul id="b97b5c0f-1265-4c4f-93e7-9f675b6bce78" class="block-color-red to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">參考作業：第7周 課堂作業 3</span></li></ul><div id="aeffac39-f14b-4ba5-8451-7217fc22dc86" class="column-list"><div id="7faadb71-30d8-4aae-9e02-85ed8b71f179" style="width:50%" class="column"><ul id="d79ae79f-33f6-4da5-a0a2-e04a8666fc9e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">請依「南臺科技大學等第制與百分制單科成績對照表」，計算出每一行的 GPA。</span></li></ul></div><div id="2d30eb33-dce2-4b97-b0bc-e4c845859b79" style="width:50%" class="column"><figure id="678a0e60-8f85-47e0-ab29-1fcbab3181a0" class="image"><a href="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A7%A3%E9%A1%8C%E8%AA%AA%E6%98%8E%20(%E8%A8%88%20f1803/Untitled%201.png"><img style="width:384px" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A7%A3%E9%A1%8C%E8%AA%AA%E6%98%8E%20(%E8%A8%88%20f1803/Untitled%201.png"/></a></figure></div></div><ul id="b874cd12-b91f-41f9-bc9b-f59b06bc15c2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">資料格式： &lt;科目數&gt; &lt;成績1&gt; &lt;學分1&gt; &lt;成績2&gt; &lt;學分2&gt; ... &lt;成績n&gt; &lt;學分n&gt;</span></li></ul><p id="91091e8b-2a63-4838-90f3-4ccd5cd1630f" class="">
+</p><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=7e7941f7-a541-4f46-ad04-7c6405591e70" id="soundon"></iframe></div></figure><h3 id="b39f4081-d083-41f5-b17d-d0c863a3ca42" class="block-color-yellow_background">參考程式：</h3><pre id="99233ed4-394a-4c1b-8732-9465c89994dc" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+string toLG(int g)
+{
+    if (g &gt;= 90) return &quot;A+&quot;;
+    if (g &gt;= 85) return &quot;A&quot;;
+    if (g &gt;= 80) return &quot;A-&quot;;
+    if (g &gt;= 77) return &quot;B+&quot;;
+    if (g &gt;= 73) return &quot;B&quot;;
+    if (g &gt;= 70) return &quot;B-&quot;;
+    if (g &gt;= 67) return &quot;C+&quot;;
+    if (g &gt;= 63) return &quot;C&quot;;
+    if (g &gt;= 60) return &quot;C-&quot;;
+    if (g &gt;= 50) return &quot;D&quot;;
+    if (g &gt;= 1) return &quot;E&quot;;
+    return &quot;X&quot;;
+}
+
+float toGP(int g)
+{
+    if (g &gt;= 90) return 4.3;
+    if (g &gt;= 85) return 4;
+    if (g &gt;= 80) return 3.7;
+    if (g &gt;= 77) return 3.3;
+    if (g &gt;= 73) return 3.0;
+    if (g &gt;= 70) return 2.7;
+    if (g &gt;= 67) return 2.3;
+    if (g &gt;= 63) return 2.0;
+    if (g &gt;= 60) return 1.7;
+    if (g &gt;= 50) return 1.0;
+    if (g &gt;= 1) return 0;
+    return 0;
+}
+
+int main()
+{
+    int col;
+    int g;
+    int c;
+    float gpa;
+    int tc;
+    int pad;
+
+    cout.precision(2);
+    while (cin &gt;&gt; col)
+    {
+        gpa = 0;
+        tc = 0;
+        pad = 20;
+        while (col &gt; 0)
+        {
+            cin &gt;&gt; g;
+            cin &gt;&gt; c;
+            tc += c;
+            gpa += toGP(g) * c;
+            cout &lt;&lt; setw(4) &lt;&lt; left &lt;&lt; toLG(g);
+            pad -= 4;
+            col--;
+        }
+        cout &lt;&lt; setw(pad) &lt;&lt; right &lt;&lt; gpa / tc &lt;&lt; endl;
+    }
+
+    return 0;
+}</code></pre><h3 id="4b347d93-65d9-4e53-89cb-d50731b5984b" class="block-color-yellow">測試資料：(grade1.txt)</h3><pre id="536826a2-80b7-4026-88d7-6c6a0afa4dbe" class="code code-wrap"><code>2 70 3 89 2
+2 45 3 90 1
+3 67 2 78 2 34 3
+1 89 4
+3 98 1 87 1 56 4</code></pre><h3 id="09c7b714-d46c-4092-98e5-fa98576874a6" class="block-color-yellow">輸出結果：</h3><pre id="04ac6f1d-f7d8-467d-abe3-9619a237c591" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; type .\grade1.txt | .\main.exe
+B-  A            3.2
+E   A+           1.1
+C+  B+  E        1.6
+A                  4
+A+  A   D          2
+
+PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; echo &quot;1 90&quot; | .\main.exe
+A+               4.3
+
+PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; echo &quot;2 90 3 80 2&quot; | .\main.exe
+A+  A-           4.1
+
+PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; echo &quot;2 90 1 80 3&quot; | .\main.exe
+A+  A-           3.9
+
+PS C:\cprog-2022s\src\week08\prob10-w07-hw03&gt; echo &quot;3 90 2 80 3 65 4&quot; | .\main.exe
+A+  A-  C        3.1</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="02b56a8c-cc15-4a41-a31e-d3138aa983ab" class="block-color-teal_background">[實作問題 8]：使用 if 找出中間值(mid)並將其輸出。</h3><ul id="e40f98d5-6e7f-457e-9499-1113a27ac9ca" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">輸入5個整數，依序存入 a、b、c、d、e 等變數。</span></li></ul><ul id="6c1a7a29-cfb9-4353-8468-02c47c0c1ca9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">使用條件判斷式 if-else 或 if-else-if， 辨識 a、b、c、d、e 的關係。</span></li></ul><ul id="a1d51621-8a1e-4149-b908-098d48dbae9b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">找出 a、b、c、d、e 中的中間值(mid)並將其輸出。</span></li></ul><ul id="bd6bc0e1-2055-4320-891e-824abc74fa2c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">中間值(mid)就是大小順序排序第三的變數，輸入的資料不會有重複的整數。</span></li></ul><h3 id="92de9289-9045-469b-9282-779fa56284e1" class="block-color-yellow_background">參考程式：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=7b7575e7-245a-4fd9-a806-ef639cd66a78" id="soundon"></iframe></div></figure><pre id="6cd307c6-415d-4080-b0f9-78841c9d3925" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;climits&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int a, b, c, d, e;
+
+    cin &gt;&gt; a;
+    cin &gt;&gt; b;
+    cin &gt;&gt; c;
+    cin &gt;&gt; d;
+    cin &gt;&gt; e;
+
+    int mid = a;
+    int cnt = 0;
+
+    (a &gt; b) &amp;&amp; cnt++;
+    (a &gt; c) &amp;&amp; cnt++;
+    (a &gt; d) &amp;&amp; cnt++;
+    (a &gt; e) &amp;&amp; cnt++;
+    if (cnt == 2)
+    {
+        mid = a;
+    }
+    else
+    {
+        cnt = 0;
+        (b &gt; a) &amp;&amp; cnt++;
+        (b &gt; c) &amp;&amp; cnt++;
+        (b &gt; d) &amp;&amp; cnt++;
+        (b &gt; e) &amp;&amp; cnt++;
+        if (cnt == 2)
+        {
+            mid = b;
+        }
+        else
+        {
+            cnt = 0;
+            (c &gt; a) &amp;&amp; cnt++;
+            (c &gt; b) &amp;&amp; cnt++;
+            (c &gt; d) &amp;&amp; cnt++;
+            (c &gt; e) &amp;&amp; cnt++;
+            if (cnt == 2)
+            {
+                mid = c;
+            }
+            else
+            {
+                cnt = 0;
+                (d &gt; a) &amp;&amp; cnt++;
+                (d &gt; b) &amp;&amp; cnt++;
+                (d &gt; c) &amp;&amp; cnt++;
+                (d &gt; e) &amp;&amp; cnt++;
+                if (cnt == 2)
+                {
+                    mid = d;
+                }
+                else
+                {
+                    mid = e;
+                }
+            }
+        }
+    }
+
+    cout &lt;&lt; setw(5) &lt;&lt; a
+         &lt;&lt; setw(5) &lt;&lt; b
+         &lt;&lt; setw(5) &lt;&lt; c
+         &lt;&lt; setw(5) &lt;&lt; d
+         &lt;&lt; setw(5) &lt;&lt; e &lt;&lt; endl;
+    cout &lt;&lt; &quot;mid = &quot; &lt;&lt; mid &lt;&lt; endl;
+
+    return 0;
+}</code></pre><h3 id="e7e5b720-ad7f-4e7e-be7d-9767df8be1a9" class="block-color-yellow">輸出結果：</h3><pre id="9d6f1dd2-dd23-4053-a37b-bbabacf74608" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob02&gt; echo &quot;1 3 2 5 4&quot; | .\main.exe
+    1    3    2    5    4
+mid = 3
+PS C:\cprog-2022s\src\week08\prob02&gt; echo &quot;5 4 3 2 1&quot; | .\main.exe
+    5    4    3    2    1
+mid = 3
+PS C:\cprog-2022s\src\week08\prob02&gt; echo &quot;1 5 2 4 3&quot; | .\main.exe
+    1    5    2    4    3
+mid = 3</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="130192e8-5140-4f48-846d-8bd3e0b151a5" class="block-color-teal_background">[實作問題 9]：將整數n中的所有『數字』加總並將總和輸出。</h3><ul id="5914ee25-af27-45c2-9820-881647e848ce" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">讀進一任意整數n，將整數n中的所有『數字』加總並將總和輸出。</span><ul id="fb15c780-0432-4d08-8708-795bdb1a1e36" class="bulleted-list"><li style="list-style-type:disc">12345 ⇒ 1+2+3+4+5</li></ul><ul id="4adc85ce-0a1f-4d76-84fc-2473639e7c22" class="bulleted-list"><li style="list-style-type:disc">666 ⇒ 6+6+6</li></ul></li></ul><h3 id="c8a79efe-956a-4f49-a34f-25632ca23463" class="block-color-yellow_background">參考程式：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=d9a25f0b-ac7f-437a-97a3-62172ac4c36d" id="soundon"></iframe></div></figure><pre id="ac24134f-f859-4ebb-945f-62a570205ab4" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int n;
+    int sum = 0;
+    cin &gt;&gt; n;
+
+    int m = n;
+    while (n &gt; 0)
+    {
+        sum += n % 10;
+        n /= 10;
+    }
+
+    cout &lt;&lt; &quot;sum of all digis of &quot; &lt;&lt; m &lt;&lt; &quot; = &quot; &lt;&lt; sum &lt;&lt; endl;
+
+    return 0;
+}</code></pre><h3 id="2d5becd1-5e48-4868-b8c5-b0ff7498bf88" class="block-color-yellow">輸出結果：</h3><pre id="6e39f4bd-2220-41c0-819b-d821a17af33a" class="code code-wrap"><code>PS C:\cprog-2022s\src\week08\prob09&gt; echo 123456789 | .\main.exe
+sum of all digis of 123456789 = 45
+
+PS C:\cprog-2022s\src\week08\prob09&gt; echo 88888888 | .\main.exe 
+sum of all digis of 88888888 = 64
+
+PS C:\cprog-2022s\src\week08\prob09&gt; echo 7777777 | .\main.exe 
+sum of all digis of 7777777 = 49
+
+PS C:\cprog-2022s\src\week08\prob09&gt; echo 1020304050 | .\main.exe
+sum of all digis of 1020304050 = 15</code></pre><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="c0718cc3-6e5a-40b2-98e2-2cd88917f42a" class="block-color-teal_background">[實作問題 10]：計算『3』出現在整數資料列中的次數。</h3><ul id="7f3afcf1-e7a6-4131-a80c-cb105f70f12e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">運用作業中所使用的讀取管線(|)資料的技巧，用 cin 讀取由管線導入的整數資料。</span></li></ul><ul id="bad8f95d-9771-4399-b821-895090bf706e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">累計『3』出現在整數資料列中的次數，並在管線輸入資料結束時輸出。</span></li></ul><h3 id="7ab3d842-fb26-4dec-8489-16c4e040b648" class="block-color-yellow_background">參考程式：</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=a0d80276-5697-4403-9b49-00e760d809db" id="soundon"></iframe></div></figure><pre id="c0da6827-4163-4853-831e-fdc42f99adb0" class="code code-wrap"><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main()
+{
+    int n;
+    int cnt = 0;
+
+    while (cin &gt;&gt; n)
+    {
+        cout &lt;&lt; setw(6) &lt;&lt; n;
+        while (n &gt; 0)
+        {
+            if (n % 10 == 3)
+                cnt++;
+            n /= 10;
+        }
+    }
+
+    cout &lt;&lt; endl
+         &lt;&lt; &quot;Counting the number of digi 3 : &quot; &lt;&lt; cnt &lt;&lt; endl;
+
+    return 0;
+}</code></pre><h3 id="48d20901-0583-44b9-8be3-f49b4d128321" class="block-color-yellow">測試資料：</h3><pre id="5d68be48-05bc-4a2b-b12b-21ede2c52fea" class="code code-wrap"><code>PS D:\cprog-2022s\src\week08\prob10&gt; type .\test1.txt
+       6       1       1       5       6       4       5       1       6       5
+
+PS D:\cprog-2022s\src\week08\prob10&gt; type .\test2.txt
+       1       5       2       5       6       6       5       5       1       1
+       5       6       5       3       2       6       3       5       5       2
+
+PS D:\cprog-2022s\src\week08\prob10&gt; type .\test3.txt
+       1       3       6       3       5       5       1       2       2       4
+       6       1       1       2       3       3       1       6       5       6
+       1       2       6       3       1       1       3       2       1       3</code></pre><h3 id="8d024d3d-1dc5-480e-9880-25460252d52c" class="block-color-yellow">輸出結果：</h3><pre id="2826e37b-75e3-471b-9367-89a98f22250a" class="code code-wrap"><code>PS D:\cprog-2022s\src\week08\prob10&gt; type .\test1.txt | .\main.exe
+     6     1     1     5     6     4     5     1     6     5
+Counting the number of digi 3 : 0
+
+PS D:\cprog-2022s\src\week08\prob10&gt; type .\test2.txt | .\main.exe
+     1     5     2     5     6     6     5     5     1     1     5     6     5     3     2     6     3     5     5     2
+Counting the number of digi 3 : 2
+
+PS D:\cprog-2022s\src\week08\prob10&gt; type .\test3.txt | .\main.exe
+     1     3     6     3     5     5     1     2     2     4     6     1     1     2     3     3     1     6     5     6     1     2     6     3     1     1     3     2     1     3
+Counting the number of digi 3 : 7</code></pre><h3 id="28536493-78d6-4e67-9810-a8d2b48ca414" class="block-color-yellow"></h3><figure id="9d921d1a-3c1c-4ee5-83d6-1a2938777a81" class="image"><a href="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A7%A3%E9%A1%8C%E8%AA%AA%E6%98%8E%20(%E8%A8%88%20f1803/%E5%9C%96%E7%89%873.png"><img style="width:1322px" src="%E6%9C%9F%E4%B8%AD%E8%80%83%E8%A7%A3%E9%A1%8C%E8%AA%AA%E6%98%8E%20(%E8%A8%88%20f1803/%E5%9C%96%E7%89%873.png"/></a></figure><p id="0b250bab-82ba-4f00-9fe4-519381c19b75" class="">
+</p></div></article>
+<script>hljs.highlightAll();</script>
+</body></html>

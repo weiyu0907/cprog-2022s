@@ -1,0 +1,683 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>C++ 基礎入門 5 - 函數</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="07c456bc-e2d4-4082-9f1c-d9e97fb2f61d" class="page mono"><header><img class="page-cover-image" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/7.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/yang-tr-wb.png"/></div><h1 class="page-title"><strong>C++ 基礎入門 5 - 函數</strong></h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h2 id="6ac00aed-2659-4c5e-907a-88d728721b2d" class="block-color-purple_background">參考資料</h2><figure id="c128d1ac-94d6-42b9-8b56-21cdeaf5d73c"><a  target="_blank" href="https://www.programiz.com/cpp-programming/function" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ Function (With Examples)</div><div class="bookmark-description">A function is a block of code that performs a specific task. Suppose we need to create a program to create a circle and color it. We can create two functions to solve this problem: a function to draw the circle a function to color the circle Dividing a complex problem into smaller chunks makes our program easy to understand and reusable.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/function</div></div><img src="https://cdn.programiz.com/sites/tutorial2program/files/cpp-function-parameters.png" class="bookmark-image"/></a></figure><figure id="98f30311-b75e-415a-8a1e-f379c6fad605"><a  target="_blank" href="https://www.programiz.com/cpp-programming/user-defined-function-types" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">C++ User-defined Function Types</div><div class="bookmark-description">For better understanding of arguments and return in functions, user-defined functions can be categorised as: Consider a situation in which you have to check prime number. This problem is solved below by making user-defined function in 4 different ways as mentioned above.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/cpp-programming/user-defined-function-types</div></div></a></figure><h2 id="826ed3d2-de8d-4a5d-aeac-77392ee4bbf7" class="block-color-purple_background">課程設計</h2><div id="75e09c0c-8410-41b5-adb4-b831f560cb8d" class="column-list"><div id="9d01d84f-cbee-4ad0-906d-043171e2b302" style="width:12.5%" class="column"><figure id="a3a0e458-f09b-48f8-bcd8-b458eae743e0" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled.png"><img style="width:144px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled.png"/></a></figure></div><div id="d3a92dc0-e1a8-4daf-91c0-dfe3cc2da017" style="width:87.50000000000003%" class="column"><div id="yang-id-001" class="yang-class-001">目 錄：</div>
+<a href="#cbca8647-3dbf-4631-84ca-51b49fa358ec" class="yang-class-002">[課堂練習 1]：沒有回傳值的使用者定義函數(User-defined Function)。</a>
+<a href="#da96092e-3343-4d4c-a5ac-0e797a5f3d10" class="yang-class-002">[課堂練習 2]：回傳整數的使用者定義函數(User-defined Function)。</a>
+<a href="#876aac05-ea4e-4dcf-b4f7-71e57d99147b" class="yang-class-002">[課堂練習 3]：讀取管線導入的整數資料，依『奇/偶』數繪出『*/#』號條狀圖。</a>
+<a href="#f93f8893-62ce-46d5-981e-a8994892fc03" class="yang-class-002">[課堂作業 1]：選擇輸出 1 ~ n 中全部整數、偶數、奇數、及被4整除的整數。</a>
+</div></div><h3 id="5f212922-73c3-4062-97c1-5b211df956a9" class="block-color-teal_background">不需安裝的線上 C/C++ 開發工具</h3><figure id="cd0d484a-d956-4e9b-bbea-f23225630834"><a  target="_blank" href="https://www.onlinegdb.com/online_c++_compiler" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Online C++ Compiler - online editor</div><div class="bookmark-description">OnlineGDB is online IDE with C++ compiler. Quick and easy way to compiler c++ program online. It supports g++ compiler for c++.</div></div><div class="bookmark-href"><img src="https://www.onlinegdb.com/favicon.ico" class="icon bookmark-icon"/>https://www.onlinegdb.com/online_c++_compiler</div></div></a><figcaption><strong>功能完整的線上 C/C++ 開發工具</strong></figcaption></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="cbca8647-3dbf-4631-84ca-51b49fa358ec" class="block-color-teal_background">[課堂練習 1]：沒有回傳值的使用者定義函數(User-defined Function)。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=56e1f2c7-1801-4891-8657-3980286fbbea" id="soundon"></iframe></div></figure><ul id="a3e3c16d-7854-4e9c-ad72-43ea1ca87311" class="bulleted-list"><li style="list-style-type:disc">定義一沒有回傳值的函數 <code>sayHello()</code>，當被呼叫時就印出 <code>Hello world!</code>。</li></ul><ul id="7c5e7b11-8b79-4545-9eff-7af8c36ac27d" class="bulleted-list"><li style="list-style-type:disc">sayHello()只印出 <code>Hello world!</code>，不要附加換行(endl)的輸出。</li></ul><ul id="1709781f-6fe0-45dd-a57e-fba5201e5972" class="bulleted-list"><li style="list-style-type:disc">注意事項：<ul id="fb1efc6a-e585-4f77-8d1c-7eb5dcdc2e43" class="bulleted-list"><li style="list-style-type:circle">範例程式中第9行的說明，<code>第9行『後』</code>的程式皆不可更動。</li></ul><ul id="c74ca256-90db-4993-8517-7288f069da37" class="bulleted-list"><li style="list-style-type:circle">作業或者考試程式未遵循『注意事項』，自動檢查系統將判定繳交的程式測試失敗。</li></ul></li></ul><h3 id="48a4f608-e7ad-4953-88c9-1cea56abbeec" class="block-color-yellow">程式範例</h3><figure id="c1445095-9a75-4842-92f9-38a0ce03aab4" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%201.png"><img style="width:336px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%201.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="da96092e-3343-4d4c-a5ac-0e797a5f3d10" class="block-color-teal_background">[課堂練習 2]：回傳整數的使用者定義函數(User-defined Function)。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=ba06a0e5-9c31-4f86-9543-fd35416ffdb0" id="soundon"></iframe></div></figure><ul id="14f61e6b-e886-4f59-b3ef-9b028ca8ac68" class="bulleted-list"><li style="list-style-type:disc">這個課堂練習提供了一個判斷質數的函數 <code>isPrime(int)</code>。</li></ul><ul id="3b7e7191-fc99-4290-8657-589d7470d6ff" class="bulleted-list"><li style="list-style-type:disc"><code>isPrime(int v)</code> 函數回傳整數 <code>1</code> 當參數 <code>v</code> 是質數，否則回傳整數 <code>0</code>。</li></ul><ul id="faa463ab-413c-49a5-b62c-6ebf8ad08fc0" class="bulleted-list"><li style="list-style-type:disc">利用所提供的 <code>isPrime(int)</code> 函數，輸出 <code>2 ~ n</code> 中的所有質數。</li></ul><ul id="8e624524-5192-4479-b149-7578a125cb7d" class="bulleted-list"><li style="list-style-type:disc"><code>n</code> 是由標準輸入(stdin)提供的一個整數。</li></ul><ul id="7af95da3-667c-4be9-8ffc-ebf78bfbae69" class="bulleted-list"><li style="list-style-type:disc">每行最多印 <code>10</code> 個數字，每個數字寬度 <code>5</code> 並靠右對齊。</li></ul><ul id="941d731d-a1c8-42f6-8802-69d2321aa92d" class="bulleted-list"><li style="list-style-type:disc">注意事項：<ul id="adb1e6ef-6961-4c0d-85c0-3499e133cc78" class="bulleted-list"><li style="list-style-type:circle">注意程式中第14行的說明，<code>第14行『前』</code>的程式皆不可更動。</li></ul><ul id="9ec61faf-5743-4a2b-8c6f-5238e9e3386d" class="bulleted-list"><li style="list-style-type:circle">作業或者考試程式未遵循『注意事項』，自動檢查系統將判定繳交的程式測試失敗。</li></ul></li></ul><h3 id="13b97b2e-0f01-4a5c-8b98-afef2111fce9" class="block-color-yellow">程式範例</h3><figure id="97c645c2-d48b-40a4-82fa-e48f4b9faa69" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%202.png"><img style="width:336px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%202.png"/></a></figure><h3 id="2bf8a4ea-fe11-40fb-875d-4719ee7c3348" class="block-color-yellow">輸出結果</h3><figure id="2eff761e-474c-4e5a-bc04-6f193fd97e65" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%203.png"><img style="width:384px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%203.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="876aac05-ea4e-4dcf-b4f7-71e57d99147b" class="block-color-teal_background">[課堂練習 3]：讀取管線導入的整數資料，依『奇/偶』數繪出『*/#』號條狀圖。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=bd9b4955-35e9-4ace-859f-a6504f33ee37" id="soundon"></iframe></div></figure><ul id="7285a0a6-3443-46d8-8e80-3624641149ca" class="bulleted-list"><li style="list-style-type:disc">這是期中考題目的再進化，將期中考第6題以<code>函數</code>的方式設計。</li></ul><ul id="06b0e9ed-3d80-4fd9-a895-6057fb2b55cb" class="bulleted-list"><li style="list-style-type:disc">運用作業中所使用的讀取管線<code>|</code>資料的技巧，用 <code>cin</code> 讀取由管線導入的整數資料。</li></ul><ul id="ab97064a-e1ff-4e37-90e0-73fdc464ee80" class="bulleted-list"><li style="list-style-type:disc">依資料的奇/偶特性選擇條狀圖輸出符號。</li></ul><ul id="855fbb6f-3893-4298-94c2-7001d7ab27d2" class="bulleted-list"><li style="list-style-type:disc">如果資料是偶數使用『#』繪出條狀圖，如果資料是奇數則使用『*』號。</li></ul><h3 id="ae6e7155-b1c8-4288-965e-62c616de09ec" class="block-color-yellow">期中考第6題的解答</h3><figure id="4daef33f-8e4b-4349-93cb-98bf74736f85" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%204.png"><img style="width:336px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%204.png"/></a></figure><h3 id="e4e80fca-781a-4a94-a312-2035eae0479b" class="block-color-yellow">程式範例 </h3><figure id="0410139d-7360-44db-a25f-bac9b7ab48b7" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%205.png"><img style="width:336px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%205.png"/></a></figure><h3 id="7cc21e97-335a-45c6-b21f-f294dd15a8e0" class="block-color-yellow">輸出結果</h3><figure id="70686e0f-342a-4096-a665-b1024de0c3ff" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%206.png"><img style="width:480px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%206.png"/></a></figure><a href="#yang-id-001" class="yang-class-003">回目錄</a>
+<h3 id="f93f8893-62ce-46d5-981e-a8994892fc03" class="block-color-blue_background">[課堂作業 1]：選擇輸出 1 ~ n 中全部整數、偶數、奇數、及被4整除的整數。</h3><div><iframe src="https://player.soundon.fm/embed/?podcast=1f11ea98-3d1e-4462-bad7-cda8aa00895d&episode=2626449e-de3b-4b83-ad4a-db7c527a368d" id="soundon"></iframe></div></figure><ul id="58e546b3-47ec-4891-8cb8-01c2fc150913" class="bulleted-list"><li style="list-style-type:disc">這是期中考題目的再進化，將期中考第3題的加分題，以<code>函數</code>的方式設計。</li></ul><ul id="f56920e9-71e5-47aa-987b-1fe33003f63d" class="bulleted-list"><li style="list-style-type:disc">經由標準輸入(stdin)給定兩個參數：<code>功能選擇</code>及<code>n</code><ul id="d731045e-5ce0-4394-9b5c-e79313978293" class="bulleted-list"><li style="list-style-type:circle">功能選擇 = 0：輸出 1 ~ n 全部整數。</li></ul><ul id="80ac5076-89fc-415b-b4fe-4f7cf8581e4f" class="bulleted-list"><li style="list-style-type:circle">功能選擇 = 1：輸出 1 ~ n 中的偶數。</li></ul><ul id="00ce55cb-c93d-40cb-84d4-7cf264499ac5" class="bulleted-list"><li style="list-style-type:circle">功能選擇 = 2：輸出 1 ~ n 中的奇數。</li></ul><ul id="9ea4a0e8-565d-46e8-a7fb-fc004cfd6d57" class="bulleted-list"><li style="list-style-type:circle">功能選擇 = 3：輸出 1 ~ n 中可被4整除的整數。</li></ul></li></ul><ul id="4fe71e9b-ccde-42d3-8965-661a7cd20599" class="bulleted-list"><li style="list-style-type:disc">對應『功能選擇』的函數依序為：<code>printAll(int)</code>、<code>printEven(int)</code>、<code>printOdd(int)</code>、及<code>printDiv4(int)</code>。</li></ul><h3 id="2090177d-ded2-4710-88e5-f5d63a8067e9" class="block-color-yellow">期中考第3題的加分題解答</h3><figure id="7022948a-e37b-4fa8-b0a6-c80d6ad909f5" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%207.png"><img style="width:288px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%207.png"/></a></figure><h3 id="50d48436-f687-4d11-8985-64c29eafe048" class="block-color-yellow">程式範例 </h3><figure id="20a90df0-f984-4f92-9da5-832af607b912" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%208.png"><img style="width:336px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%208.png"/></a></figure><h3 id="3594f7a0-3897-46c7-b8cb-6b3ede282008" class="block-color-yellow">輸出結果</h3><figure id="190de2ee-8a5f-4886-a015-0298fff2fb7e" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%209.png"><img style="width:480px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/Untitled%209.png"/></a></figure><p id="e51a9e3c-51ea-4747-bf26-7d3cf56740ad" class="">
+</p><p id="38fd8bb0-ef13-42f5-bb99-142fb48a87ab" class="">
+</p><figure id="ef582877-e059-4f08-bd48-639a46b81e12" class="image"><a href="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/%E5%9C%96%E7%89%873.png"><img style="width:1322px" src="C++%20%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%205%20-%20%E5%87%BD%E6%95%B8%20a3a0e458f09b48f8bcd8b458eae743e0/%E5%9C%96%E7%89%873.png"/></a></figure><p id="b26fafbd-2d5e-45a2-ab7b-e03e6f27fc35" class="">
+</p></div></article>
+<script>hljs.highlightAll();</script>
+</body></html>

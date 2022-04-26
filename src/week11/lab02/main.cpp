@@ -13,9 +13,23 @@ int isPrime(int v)
 
 // -----^^----- 不得修改『以上』的程式 -----^^-----
 
+
 int main()
 {
-    // add your code here
+int n;
+int cik = 5;
+cin>>n;
+for (int i=2;i<=n;i++)
+{if(isPrime(i))
+{
+cout<<setw(10)<<i;
+col--;
+if(col==0)
+{cout<<endl;
+col=5;
+}}}
+return 0;
+}
     
     return 0;
 }

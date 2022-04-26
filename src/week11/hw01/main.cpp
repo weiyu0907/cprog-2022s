@@ -3,7 +3,35 @@
 
 using namespace std;
 
-// add your code here
+void printAll(int n)
+for (int i = 1; i <= n; i++)
+    {
+        cout << i <<setw(4);
+    }
+void printEven(int n)
+   for (int i = 1; i <= n; i++)
+    {
+        if (i % 2 == 0)
+        {
+            cout << i<<setw(4);
+        }
+    } 
+void printOdd(int n)
+   for (int i = 1; i <= n; i++)
+    {
+        if (i % 2 != 0)
+        {
+            cout << i <<setw(4);
+        }
+    }
+void printDiv4(int n)
+    for (int i = 1; i <= n; i++)
+    {
+        if (i % 4 == 0)
+        {
+            cout << i<<setw(4);
+        }
+    }// add your code here// add your code here
 
 // -----vv----- 不得修改『以下』的程式 -----vv-----
 
